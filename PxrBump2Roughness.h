@@ -30,18 +30,18 @@
 #ifndef PXR_BUMP2ROUGHNESS_H
 #define PXR_BUMP2ROUGHNESS_H
 
-// vector compute_tangent( float basis )
-// {
-    // float basis_dx = Dx(basis);
-    // float basis_dy = Dy(basis);
+vector compute_tangent( float basis )
+{
+    float basis_dx = Dx(basis);
+    float basis_dy = Dy(basis);
 
-    // if (fabs(basis_dx) < 1.e-6 && fabs(basis_dy) < 1.e-6) {
-        // return Dy(P);
-    // }
-    // else {
-        // return (basis_dy * Dx(P)) - (basis_dx * Dy(P));
-    // }
-// }
+    if (fabs(basis_dx) < 1.e-6 && fabs(basis_dy) < 1.e-6) {
+        return Dy(P);
+    }
+    else {
+        return (basis_dy * Dx(P)) - (basis_dx * Dy(P));
+    }
+}
 
 struct Struct_Bump2RoughnessBundle
 {

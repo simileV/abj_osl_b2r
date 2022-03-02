@@ -116,15 +116,21 @@ shader PxrBump2RoughnessRead
     ]],
 
 
-    output vector resultBumpNormal = normal(0) [[
+    // output vector resultBumpNormal = normal(0) [[
+        // string widget="null",
+    // ]],
+    
+    // output color resultBumpNormal = color(0) [[
+        // string widget="null",
+    // ]],
+    
+    output vector resultBumpNormal = vector(0) [[
         string widget="null",
     ]],
     
     output color testTex = 0,
     
-    // output vector resultBumpNormal = vector(0) [[
-        // string widget="null",
-    // ]],
+
     
     
     output float resultRoughness = 0 [[
@@ -210,18 +216,18 @@ shader PxrBump2RoughnessRead
                         color(0), 0, 3,
                         resultRGBA_d2);
                         
-        // Texture_GetColor(filename_check, inputS, inputT, 
-                // filter, textureFilterScale, 0,
-                // color(0), 0, 0,
-                // resultTest);
+        Texture_GetColor(filename_check, inputS, inputT, 
+                filter, textureFilterScale, 0,
+                color(0), 0, 0,
+                resultTest);
                 
                 
 
     
-        Texture_GetColor(filename_check, UV[0], UV[1], 
-                filter, 0, 0,
-                color(0), 0, 0,
-                resultTest);
+        // Texture_GetColor(filename_check, UV[0], UV[1], 
+                // filter, 0, 0,
+                // color(0), 0, 0,
+                // resultTest);
                         
                         
 
@@ -251,15 +257,20 @@ shader PxrBump2RoughnessRead
         /* rotation 90-degrees reverses the sign of dx, dy.
            if not inverting normal maps, do nothing.
          */
-        if (invertBumpNormal == 1){
+        if (invertBumpNormal == 0){
             dx = -dx;
             dy = -dy;
         }
         
-        // pPpt = 1 / pPpt;
+        // pPpt = (pPpt * 2.0 - 1.0);
+        
+        // pPpT[1] = -pPpT[1];
+        
+        // pPpt.y = -pPpt.y;
         
         /* bonus normal map output */
         vector PN = cross(pPps, pPpt);
+        // vector PN = cross(pPps, pPpt);
         
         /*
           if left-handed crossproduct normal will be opposite of surface normal.
@@ -267,6 +278,7 @@ shader PxrBump2RoughnessRead
           */
         int lefthanded = 0; 
         if (dot(PN,Ng)<0) {
+        // if (dot(PN,normalize(Ng))<0) {
             /*
              left-handed coordinate system
              do some remapping to get it back to right-handedness.
@@ -275,7 +287,7 @@ shader PxrBump2RoughnessRead
         }
         
         
-        // lefthanded = 0;
+        // lefthanded = 1;
         
         /*
            note: the derivative of P is not smooth on each diced face. If the
@@ -290,10 +302,15 @@ shader PxrBump2RoughnessRead
         PN = normalize(N);
         // PN = (N);
         if (lefthanded==1) PN = -PN;
+        
+        // PN[0] *= -1;
+        // if (lefthanded==1) PN = -PN;
         // PN = -PN;
         pPps = normalize(cross(pPpt,PN));
         pPpt = cross(PN,pPps);
         // pPpt = 1.0 - cross(PN,pPps);
+        // pPpt = normalize(1.0 - cross(PN,pPps));
+        // pPpt = normalize(pPpt);
         
         
         //tangent space;
@@ -304,12 +321,24 @@ shader PxrBump2RoughnessRead
         // lefthanded = 1;
         
         if (lefthanded==0) resultBumpNormal = vector(dx*bumpNormalGain, dy*bumpNormalGain, 1);
-        // else resultBumpNormal = vector((1/dx)*bumpNormalGain, dy*bumpNormalGain, -1);
-        // else resultBumpNormal = vector(dx*bumpNormalGain, (1/dy)*bumpNormalGain, -1);
-        else resultBumpNormal = vector(dx*bumpNormalGain, (dy)*bumpNormalGain, -1);
+        else resultBumpNormal = vector(dx*bumpNormalGain, dy*bumpNormalGain, -1);
+        
+        
+        
+        resultBumpNormal = vector(1.4 * dx*bumpNormalGain, 1.4 * dy*bumpNormalGain, 1); /////////
+        
+        
+        
+        
+        
+        
+        // resultBumpNormal = vector(-dx, dy, 1);
+        // resultBumpNormal = vector(normalize(dx), normalize(dy)[0], 1);
+        
+        
         
         // resultBumpNormal = vector(dx*bumpNormalGain, dy*bumpNormalGain, -1);
-        // resultBumpNormal = vector(dx*bumpNormalGain, dy*bumpNormalGain, 0);
+        // resultBumpNormal = vector(dx*bumpNormalGain, dy*bumpNormalGain, -1);
         
         // resultBumpNormal = pPps*resultBumpNormal[0] 
                          // + pPpt*resultBumpNormal[1]
@@ -319,11 +348,27 @@ shader PxrBump2RoughnessRead
         
         
         // resultBumpNormal = 1 / resultBumpNormal;
+        // resultBumpNormal = normalize(resultBumpNormal);
+        
+        
         resultBumpNormal = pPps*resultBumpNormal[0]
                         + pPpt*resultBumpNormal[1]
                         + PN*resultBumpNormal[2];
-                        // + Ng*resultBumpNormal[2];
+
+        // resultBumpNormal = normalize(pPps)*resultBumpNormal[0]
+                        // + normalize(pPpt)*resultBumpNormal[1]
+                        // + normalize(PN)*resultBumpNormal[2];
+
+
+        resultBumpNormal = normalize(resultBumpNormal);
+
+
+        // resultBumpNormal = compute_tangent(u)
                         
+        // + compute_tangent(v);
+        
+        
+        // resultBumpNormal = compute_tangent(u)  
         
         
         // resultBumpNormal = pPpt*resultBumpNormal[1];
@@ -335,7 +380,7 @@ shader PxrBump2RoughnessRead
         // resultBumpNormal = PN;
         // resultBumpNormal = resultBumpNormal;
         
-        resultBumpNormal = normalize(resultBumpNormal);
+        // resultBumpNormal = normalize(resultBumpNormal) * 2.0 - 1.0;
         // resultBumpNormal = normalize(resultBumpNormal);
         
         //pPps*resultBumpNormal[0] ;
@@ -347,6 +392,11 @@ shader PxrBump2RoughnessRead
         
         // resultBumpNormal = deriv1;
         // resultBumpNormal = deriv2;
+        
+        
+        // if (dot(PN,Ng)<0)
+            // resultB
+         
         
         /* core LEADR/Bump Roughness Logic */
         float vargain = gain * gain;
@@ -408,6 +458,8 @@ shader PxrBump2RoughnessRead
         resultAnisotropyDirection = _pPpu;
         resultHeightMap           = deriv1[0];
         // resultHeightMap           = deriv1[2];
+        
+        // testTex = normalize(Ng);
     } else {
 
         resultRoughness = baseRoughness;
