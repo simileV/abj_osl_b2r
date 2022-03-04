@@ -1,328 +1,327 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.11.14
-# options: -o C:\Users\aleks\AppData\Local\Temp\tmp52gls7o3.oso -IC:\Program Files\Blender Foundation\Blender 3.0\3.0\scripts\addons\cycles\shader
+# options: -o C:\Users\aleks\AppData\Local\Temp\tmpcv1dy6am.oso -IC:\Program Files\Blender Foundation\Blender 3.0\3.0\scripts\addons\cycles\shader
 shader PxrBump2RoughnessRead
-param	int	enable	1		%meta{string,widget,"checkBox"} %meta{int,connectable,0} %meta{string,help,"This will enabling Bump Roughness or disable it"}  %read{0,0} %write{2147483647,-1}
-param	int	invertBumpNormal	0		%meta{string,widget,"checkBox"} %meta{int,connectable,0} %meta{string,help,"This will invert Bump Normal"}  %read{184,184} %write{2147483647,-1}
-param	struct Manifold	inputManifold			%meta{string,page,""} %meta{string,tag,"struct"} %meta{string,widget,"null"} %meta{string,widget,"null"}  %read{9,9} %write{2147483647,-1} %struct{"Manifold"} %structfields{Q,QN,Qradius} %structfieldtypes{"pnf"} %structnfields{3}
-param	point	inputManifold.Q	0 0 0		%meta{string,page,""} %meta{string,tag,"struct"} %meta{string,widget,"null"} %meta{string,widget,"null"}  %read{11,12} %write{2147483647,-1} %mystruct{inputManifold} %mystructfield{0} %derivs
+param	int	enable	1		%meta{string,widget,"checkBox"} %meta{int,connectable,0} %meta{string,help,"This will enabling Bump Roughness or disable it"}  %read{1,1} %write{2147483647,-1}
+param	int	invertBumpNormal	0		%meta{string,widget,"checkBox"} %meta{int,connectable,0} %meta{string,help,"This will invert Bump Normal"}  %read{185,185} %write{2147483647,-1}
+param	struct Manifold	inputManifold			%meta{string,page,""} %meta{string,tag,"struct"} %meta{string,widget,"null"} %meta{string,widget,"null"}  %read{10,10} %write{2147483647,-1} %struct{"Manifold"} %structfields{Q,QN,Qradius} %structfieldtypes{"pnf"} %structnfields{3}
+param	point	inputManifold.Q	0 0 0		%meta{string,page,""} %meta{string,tag,"struct"} %meta{string,widget,"null"} %meta{string,widget,"null"}  %read{12,13} %write{2147483647,-1} %mystruct{inputManifold} %mystructfield{0} %derivs
 param	normal	inputManifold.QN	0 0 1		%meta{string,page,""} %meta{string,tag,"struct"} %meta{string,widget,"null"} %meta{string,widget,"null"}  %read{2147483647,-1} %write{2147483647,-1} %mystruct{inputManifold} %mystructfield{1}
 param	float	inputManifold.Qradius	0		%meta{string,page,""} %meta{string,tag,"struct"} %meta{string,widget,"null"} %meta{string,widget,"null"}  %read{2147483647,-1} %write{2147483647,-1} %mystruct{inputManifold} %mystructfield{2}
-param	float	baseRoughness	0.00100000005		%meta{string,help,"This is the roughness of a micro-facet at a singletexel level of the input textures"}  %read{277,309} %write{2147483647,-1}
-param	float	gain	1		%meta{string,help,"This is a multiplier to the aggregate roughness and normal map"}  %read{223,223} %write{2147483647,-1}
-param	float	bumpNormalGain	1		%meta{string,help,"multiplier to the normal map magnitude"}  %read{203,212} %write{2147483647,-1}
-param	float	anisotropyGain	1		%meta{string,help,"This is a multiplier to the aggregate anisotropy"}  %read{288,290} %write{2147483647,-1}
-param	string	filename_d1	""		%meta{string,widget,"assetIdInput"} %meta{string,fileTypes,"tex"} %meta{int,constant,1} %meta{string,context,"image context"} %meta{int,connectable,0} %meta{string,help,"This expects the two derivative maps, constructed by the --bumpslopes maketx option. See the maketx manual for more information."}  %read{79,128} %write{2147483647,-1}
-param	string	filename_check	""		%meta{string,widget,"assetIdInput"} %meta{string,fileTypes,"tex"} %meta{int,constant,1} %meta{string,context,"image context"} %meta{int,connectable,0} %meta{string,help,"texmap sanity check"}  %read{133,155} %write{2147483647,-1}
-param	float	frequency	1		%meta{string,help,"This is a multiplier to st-coordinates"}  %read{71,71} %write{2147483647,-1} %derivs
-param	float	rotation	0		%meta{string,help,"This is a rotation control to st-coordinates, in degrees"}  %read{19,19} %write{2147483647,-1} %derivs
+param	float	baseRoughness	0.00100000005		%meta{string,help,"This is the roughness of a micro-facet at a singletexel level of the input textures"}  %read{273,273} %write{2147483647,-1}
+param	float	gain	1		%meta{string,help,"This is a multiplier to the aggregate roughness and normal map"}  %read{219,219} %write{2147483647,-1}
+param	float	bumpNormalGain	1		%meta{string,help,"multiplier to the normal map magnitude"}  %read{204,208} %write{2147483647,-1}
+param	float	anisotropyGain	1		%meta{string,help,"This is a multiplier to the aggregate anisotropy"}  %read{284,286} %write{2147483647,-1}
+param	string	filename_d1	""		%meta{string,widget,"assetIdInput"} %meta{string,fileTypes,"tex"} %meta{int,constant,1} %meta{string,context,"image context"} %meta{int,connectable,0} %meta{string,help,"This expects the two derivative maps, constructed by the --bumpslopes maketx option. See the maketx manual for more information."}  %read{80,129} %write{2147483647,-1}
+param	string	filename_check	""		%meta{string,widget,"assetIdInput"} %meta{string,fileTypes,"tex"} %meta{int,constant,1} %meta{string,context,"image context"} %meta{int,connectable,0} %meta{string,help,"texmap sanity check"}  %read{134,156} %write{2147483647,-1}
+param	float	frequency	1		%meta{string,help,"This is a multiplier to st-coordinates"}  %read{72,72} %write{2147483647,-1} %derivs
+param	float	rotation	0		%meta{string,help,"This is a rotation control to st-coordinates, in degrees"}  %read{20,20} %write{2147483647,-1} %derivs
 param	float	blur	0		%meta{string,page,"Filtering"} %meta{string,help,"Amount of blur to apply to texture lookup."}  %read{2147483647,-1} %write{2147483647,-1}
-param	float	filterScale	1		%meta{string,widget,"null"} %meta{string,help,"Multiplies the size of the texture filter, less than one for sharper textures."}  %read{15,15} %write{2147483647,-1}
-oparam	vector	resultBumpNormal	0 0 0		%meta{string,widget,"null"}  %read{214,222} %write{205,312}
-oparam	color	testTex	0 0 0		%read{2147483647,-1} %write{159,159}
-oparam	float	resultRoughness	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{306,309}
-oparam	float	resultAnisotropy	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{310,310}
-oparam	vector	resultAnisotropyDirection	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{307,311}
-oparam	float	resultHeightMap	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{308,308}
-global	point	P	%read{161,162} %write{2147483647,-1} %derivs
-global	normal	N	%read{194,312} %write{2147483647,-1}
-global	normal	Ng	%read{190,190} %write{2147483647,-1}
-local	vector	___257_axis	%read{25,27} %write{22,22} %derivs
-local	float	___257_cosang	%read{24,65} %write{23,23} %derivs
-local	float	___257_sinang	%read{35,60} %write{23,23} %derivs
-local	float	___257_cosang1	%read{34,59} %write{24,24} %derivs
-local	float	___257_x	%read{28,60} %write{25,25} %derivs
-local	float	___257_y	%read{33,58} %write{26,26} %derivs
-local	float	___257_z	%read{35,63} %write{27,27} %derivs
-local	matrix	___257_M	%read{69,69} %write{67,67} %derivs
-local	vector	___371_dQdx	%read{171,176} %write{161,161}
-local	vector	___371_dQdy	%read{172,175} %write{162,162}
-local	float	___371_A	%read{167,175} %write{163,163}
-local	float	___371_B	%read{168,172} %write{164,164}
-local	float	___371_C	%read{168,176} %write{165,165}
-local	float	___371_D	%read{167,171} %write{166,166}
-local	float	___371_invdet	%read{174,178} %write{170,170}
-local	float	___373_del	%read{248,251} %write{246,246}
-local	int	___418_texExists	%read{85,139} %write{78,138}
-local	string	___427_filter	%read{101,155} %write{2,2}
-local	float	___427_inputS	%read{16,155} %write{11,72} %derivs
-local	float	___427_inputT	%read{16,153} %write{12,73} %derivs
-local	float	___427_textureFilterScale	%read{101,155} %write{15,15}
-local	color	___427_resultRGBA_d1.c	%read{102,157} %write{95,102} %mystruct{___427_resultRGBA_d1} %mystructfield{0}
-local	float	___427_resultRGBA_d1.a	%read{2147483647,-1} %write{96,101} %mystruct{___427_resultRGBA_d1} %mystructfield{1}
-local	color	___427_resultRGBA_d2.c	%read{129,158} %write{122,129} %mystruct{___427_resultRGBA_d2} %mystructfield{0}
-local	float	___427_resultRGBA_d2.a	%read{2147483647,-1} %write{123,128} %mystruct{___427_resultRGBA_d2} %mystructfield{1}
-local	color	___427_resultTest.c	%read{156,159} %write{149,156} %mystruct{___427_resultTest} %mystructfield{0}
-local	float	___427_resultTest.a	%read{2147483647,-1} %write{150,155} %mystruct{___427_resultTest} %mystructfield{1}
-local	color	___427_deriv1	%read{179,308} %write{157,157}
-local	color	___427_deriv2	%read{181,183} %write{158,158}
-local	vector	___427_UV	%read{5,6} %write{3,4} %derivs
-local	int	___427_hasUV	%read{2147483647,-1} %write{4,4}
-local	point	___427_QT	%read{72,73} %write{71,71} %derivs
-local	float	___427_mys	%read{163,165} %write{74,74} %derivs
-local	float	___427_myt	%read{164,166} %write{75,75} %derivs
-local	vector	___427_pPps	%read{188,271} %write{174,199}
-local	vector	___427_pPpt	%read{188,275} %write{178,200}
-local	float	___427_dx	%read{186,229} %write{179,186}
-local	float	___427_dy	%read{187,233} %write{180,187}
-local	float	___427_dxdx	%read{226,226} %write{181,181}
-local	float	___427_dydy	%read{234,234} %write{182,182}
-local	float	___427_dxdy	%read{230,230} %write{183,183}
-local	vector	___427_PN	%read{190,220} %write{188,197}
-local	int	___427_lefthanded	%read{195,201} %write{189,193}
-local	float	___427_vargain	%read{224,232} %write{223,223}
-local	float	___427_sxx	%read{237,250} %write{227,227}
-local	float	___427_sxy	%read{238,262} %write{231,231}
-local	float	___427_syy	%read{242,261} %write{235,235}
-local	float	___427_l1	%read{255,278} %write{249,249}
-local	float	___427_l2	%read{261,279} %write{252,252}
-local	vector	___427_v1	%read{258,268} %write{253,258}
-local	vector	___427_v2	%read{264,274} %write{259,264}
-local	vector	___427__pPpu	%read{307,307} %write{270,270}
-local	vector	___427__pPpv	%read{2147483647,-1} %write{276,276}
-local	float	___427_base_roughsqr	%read{278,279} %write{277,277}
-local	float	___427_varianceU	%read{280,303} %write{278,300}
-local	float	___427_varianceV	%read{282,304} %write{279,302}
-local	float	___427_resultRoughnessU	%read{284,306} %write{281,303}
-local	float	___427_resultRoughnessV	%read{284,284} %write{283,304}
-local	float	___427_rudivrv	%read{285,286} %write{284,284}
-local	float	___427_resultAnisotropy	%read{290,305} %write{287,293}
-local	float	___430__alpha	%read{300,301} %write{298,298}
-local	float	___430_variance	%read{300,302} %write{299,299}
-const	int	$const1	1		%read{0,274} %write{2147483647,-1}
-temp	int	$tmp1	%read{1,1} %write{0,0}
-const	string	$const2	"smartcubic"		%read{2,2} %write{2147483647,-1}
-const	float	$const3	0		%read{3,293} %write{2147483647,-1}
-const	string	$const4	"geom:uv"		%read{4,4} %write{2147483647,-1}
-const	int	$const5	0		%read{5,310} %write{2147483647,-1}
-temp	float	$tmp2	%read{13,13} %write{5,5} %derivs
-temp	float	$tmp3	%read{14,14} %write{6,6} %derivs
-const	string	$const6	"Texture_Std_SetupInputs"		%read{7,7} %write{2147483647,-1}
-const	string	$const7	"Texture_GetSTWithManifold"		%read{8,8} %write{2147483647,-1}
-temp	int	$tmp4	%read{10,10} %write{9,9}
-temp	point	$tmp5	%read{71,71} %write{70,70} %derivs
-temp	point	$tmp6	%read{68,68} %write{16,16} %derivs
-temp	float	$tmp7	%read{23,23} %write{19,19} %derivs
-const	string	$const8	"radians"		%read{17,17} %write{2147483647,-1}
-const	float	$const9	3.14159274		%read{18,18} %write{2147483647,-1}
-const	float	$const10	180		%read{18,18} %write{2147483647,-1}
-temp	float	$tmp8	%read{19,19} %write{18,18} %derivs
-const	point	$const11	0 0 0		%read{21,70} %write{2147483647,-1}
-const	point	$const12	0 0 1		%read{21,21} %write{2147483647,-1}
-const	string	$const13	"rotate"		%read{20,20} %write{2147483647,-1}
-temp	vector	$tmp11	%read{22,22} %write{21,21} %derivs
-const	float	$const14	1		%read{24,305} %write{2147483647,-1}
-const	int	$const15	2		%read{27,219} %write{2147483647,-1}
-temp	float	$tmp12	%read{32,32} %write{28,28} %derivs
-temp	float	$tmp13	%read{30,30} %write{29,29} %derivs
-temp	float	$tmp14	%read{31,31} %write{30,30} %derivs
-temp	float	$tmp15	%read{32,32} %write{31,31} %derivs
-temp	float	$tmp16	%read{67,67} %write{32,32} %derivs
-temp	float	$tmp17	%read{34,34} %write{33,33} %derivs
-temp	float	$tmp18	%read{36,36} %write{34,34} %derivs
-temp	float	$tmp19	%read{36,36} %write{35,35} %derivs
-temp	float	$tmp20	%read{67,67} %write{36,36} %derivs
-temp	float	$tmp21	%read{38,38} %write{37,37} %derivs
-temp	float	$tmp22	%read{40,40} %write{38,38} %derivs
-temp	float	$tmp23	%read{40,40} %write{39,39} %derivs
-temp	float	$tmp24	%read{67,67} %write{40,40} %derivs
-temp	float	$tmp25	%read{42,42} %write{41,41} %derivs
-temp	float	$tmp26	%read{44,44} %write{42,42} %derivs
-temp	float	$tmp27	%read{44,44} %write{43,43} %derivs
-temp	float	$tmp28	%read{67,67} %write{44,44} %derivs
-temp	float	$tmp29	%read{49,49} %write{45,45} %derivs
-temp	float	$tmp30	%read{47,47} %write{46,46} %derivs
-temp	float	$tmp31	%read{48,48} %write{47,47} %derivs
-temp	float	$tmp32	%read{49,49} %write{48,48} %derivs
-temp	float	$tmp33	%read{67,67} %write{49,49} %derivs
-temp	float	$tmp34	%read{51,51} %write{50,50} %derivs
-temp	float	$tmp35	%read{53,53} %write{51,51} %derivs
-temp	float	$tmp36	%read{53,53} %write{52,52} %derivs
-temp	float	$tmp37	%read{67,67} %write{53,53} %derivs
-temp	float	$tmp38	%read{55,55} %write{54,54} %derivs
-temp	float	$tmp39	%read{57,57} %write{55,55} %derivs
-temp	float	$tmp40	%read{57,57} %write{56,56} %derivs
-temp	float	$tmp41	%read{67,67} %write{57,57} %derivs
-temp	float	$tmp42	%read{59,59} %write{58,58} %derivs
-temp	float	$tmp43	%read{61,61} %write{59,59} %derivs
-temp	float	$tmp44	%read{61,61} %write{60,60} %derivs
-temp	float	$tmp45	%read{67,67} %write{61,61} %derivs
-temp	float	$tmp46	%read{66,66} %write{62,62} %derivs
-temp	float	$tmp47	%read{64,64} %write{63,63} %derivs
-temp	float	$tmp48	%read{65,65} %write{64,64} %derivs
-temp	float	$tmp49	%read{66,66} %write{65,65} %derivs
-temp	float	$tmp50	%read{67,67} %write{66,66} %derivs
-temp	vector	$tmp51	%read{70,70} %write{69,69} %derivs
-temp	vector	$tmp52	%read{69,69} %write{68,68} %derivs
-const	color	$const16	0 0 0		%read{95,155} %write{2147483647,-1}
-const	string	$const17	"Texture_GetColor"		%read{76,131} %write{2147483647,-1}
-const	string	$const18	""		%read{79,144} %write{2147483647,-1}
-temp	int	$tmp54	%read{80,80} %write{79,79}
-temp	int	$tmp55	%read{83,83} %write{82,82}
-temp	int	$tmp56	%read{2147483647,-1} %write{84,84}
-const	string	$const19	"exists"		%read{84,138} %write{2147483647,-1}
-temp	int	$tmp57	%read{86,86} %write{85,85}
-temp	int	$tmp58	%read{88,88} %write{87,87}
-temp	int	$tmp59	%read{89,93} %write{88,92}
-temp	int	$tmp60	%read{91,91} %write{90,90}
-temp	int	$tmp61	%read{92,92} %write{91,91}
-const	string	$const20	"texture not found \\'%s\\'"		%read{94,148} %write{2147483647,-1}
-const	string	$const21	"TEXTURE NOT FOUND"		%read{97,151} %write{2147483647,-1}
-const	string	$const22	"TEXTURE FOUND"		%read{98,152} %write{2147483647,-1}
-temp	float	$tmp62	%read{101,101} %write{99,99} %derivs
-const	string	$const23	"alpha"		%read{101,155} %write{2147483647,-1}
-const	string	$const24	"interp"		%read{101,155} %write{2147483647,-1}
-const	string	$const25	"blur"		%read{101,155} %write{2147483647,-1}
-const	string	$const26	"missingcolor"		%read{101,155} %write{2147483647,-1}
-const	string	$const27	"missingalpha"		%read{101,155} %write{2147483647,-1}
-const	string	$const28	"fill"		%read{101,155} %write{2147483647,-1}
-const	string	$const29	"firstchannel"		%read{101,155} %write{2147483647,-1}
-const	string	$const30	"width"		%read{101,155} %write{2147483647,-1}
-const	string	$const31	"subimage"		%read{101,155} %write{2147483647,-1}
-temp	int	$tmp63	%read{101,101} %write{100,100}
-const	int	$const32	3		%read{128,128} %write{2147483647,-1}
-temp	int	$tmp65	%read{107,107} %write{106,106}
-temp	int	$tmp66	%read{110,110} %write{109,109}
-temp	int	$tmp67	%read{2147483647,-1} %write{111,111}
-temp	int	$tmp68	%read{113,113} %write{112,112}
-temp	int	$tmp69	%read{115,115} %write{114,114}
-temp	int	$tmp70	%read{116,120} %write{115,119}
-temp	int	$tmp71	%read{118,118} %write{117,117}
-temp	int	$tmp72	%read{119,119} %write{118,118}
-temp	float	$tmp73	%read{128,128} %write{126,126} %derivs
-temp	int	$tmp74	%read{128,128} %write{127,127}
-temp	int	$tmp76	%read{134,134} %write{133,133}
-temp	int	$tmp77	%read{137,137} %write{136,136}
-temp	int	$tmp78	%read{2147483647,-1} %write{138,138}
-temp	int	$tmp79	%read{140,140} %write{139,139}
-temp	int	$tmp80	%read{142,142} %write{141,141}
-temp	int	$tmp81	%read{143,147} %write{142,146}
-temp	int	$tmp82	%read{145,145} %write{144,144}
-temp	int	$tmp83	%read{146,146} %write{145,145}
-temp	float	$tmp84	%read{155,155} %write{153,153} %derivs
-temp	int	$tmp85	%read{155,155} %write{154,154}
-const	string	$const33	"partialDeriv"		%read{160,160} %write{2147483647,-1}
-temp	float	$tmp86	%read{169,169} %write{167,167}
-temp	float	$tmp87	%read{169,169} %write{168,168}
-temp	float	$tmp88	%read{170,170} %write{169,169}
-temp	vector	$tmp89	%read{173,173} %write{171,171}
-temp	vector	$tmp90	%read{173,173} %write{172,172}
-temp	vector	$tmp91	%read{174,174} %write{173,173}
-temp	vector	$tmp92	%read{177,177} %write{175,175}
-temp	vector	$tmp93	%read{177,177} %write{176,176}
-temp	vector	$tmp94	%read{178,178} %write{177,177}
-temp	int	$tmp95	%read{185,185} %write{184,184}
-temp	float	$tmp96	%read{191,191} %write{190,190}
-temp	int	$tmp97	%read{192,192} %write{191,191}
-temp	int	$tmp98	%read{196,196} %write{195,195}
-temp	vector	$tmp99	%read{199,199} %write{198,198}
-temp	int	$tmp100	%read{202,202} %write{201,201}
-temp	float	$tmp101	%read{205,205} %write{203,203}
-temp	float	$tmp102	%read{205,205} %write{204,204}
-temp	float	$tmp103	%read{208,208} %write{206,206}
-temp	float	$tmp104	%read{208,208} %write{207,207}
-const	float	$const35	-1		%read{208,208} %write{2147483647,-1}
-const	float	$const36	1.39999998		%read{209,211} %write{2147483647,-1}
-temp	float	$tmp105	%read{210,210} %write{209,209}
-temp	float	$tmp106	%read{213,213} %write{210,210}
-temp	float	$tmp107	%read{212,212} %write{211,211}
-temp	float	$tmp108	%read{213,213} %write{212,212}
-temp	float	$tmp109	%read{215,215} %write{214,214}
-temp	vector	$tmp110	%read{218,218} %write{215,215}
-temp	float	$tmp111	%read{217,217} %write{216,216}
-temp	vector	$tmp112	%read{218,218} %write{217,217}
-temp	vector	$tmp113	%read{221,221} %write{218,218}
-temp	float	$tmp114	%read{220,220} %write{219,219}
-temp	vector	$tmp115	%read{221,221} %write{220,220}
-temp	float	$tmp116	%read{227,227} %write{224,224}
-const	float	$const37	2		%read{224,297} %write{2147483647,-1}
-temp	float	$tmp117	%read{226,226} %write{225,225}
-temp	float	$tmp118	%read{227,227} %write{226,226}
-temp	float	$tmp119	%read{231,231} %write{228,228}
-temp	float	$tmp120	%read{230,230} %write{229,229}
-temp	float	$tmp121	%read{231,231} %write{230,230}
-temp	float	$tmp122	%read{235,235} %write{232,232}
-temp	float	$tmp123	%read{234,234} %write{233,233}
-temp	float	$tmp124	%read{235,235} %write{234,234}
-const	string	$const38	"covarToEigen2D"		%read{236,236} %write{2147483647,-1}
-temp	float	$tmp125	%read{240,240} %write{237,237}
+param	float	filterScale	1		%meta{string,widget,"null"} %meta{string,help,"Multiplies the size of the texture filter, less than one for sharper textures."}  %read{16,16} %write{2147483647,-1}
+oparam	vector	resultBumpNormal	0 0 0		%meta{string,widget,"null"}  %read{210,218} %write{0,218} %initexpr
+oparam	color	testTex	0 0 0		%read{2147483647,-1} %write{160,160}
+oparam	float	resultRoughness	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{302,302}
+oparam	float	resultAnisotropy	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{2147483647,-1}
+oparam	vector	resultAnisotropyDirection	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{303,303}
+oparam	float	resultHeightMap	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{304,304}
+global	point	P	%read{162,163} %write{2147483647,-1} %derivs
+global	normal	N	%read{195,195} %write{2147483647,-1}
+global	normal	Ng	%read{191,191} %write{2147483647,-1}
+local	vector	___257_axis	%read{26,28} %write{23,23} %derivs
+local	float	___257_cosang	%read{25,66} %write{24,24} %derivs
+local	float	___257_sinang	%read{36,61} %write{24,24} %derivs
+local	float	___257_cosang1	%read{35,60} %write{25,25} %derivs
+local	float	___257_x	%read{29,61} %write{26,26} %derivs
+local	float	___257_y	%read{34,59} %write{27,27} %derivs
+local	float	___257_z	%read{36,64} %write{28,28} %derivs
+local	matrix	___257_M	%read{70,70} %write{68,68} %derivs
+local	vector	___371_dQdx	%read{172,177} %write{162,162}
+local	vector	___371_dQdy	%read{173,176} %write{163,163}
+local	float	___371_A	%read{168,176} %write{164,164}
+local	float	___371_B	%read{169,173} %write{165,165}
+local	float	___371_C	%read{169,177} %write{166,166}
+local	float	___371_D	%read{168,172} %write{167,167}
+local	float	___371_invdet	%read{175,179} %write{171,171}
+local	float	___373_del	%read{244,247} %write{242,242}
+local	int	___418_texExists	%read{86,140} %write{79,139}
+local	string	___427_filter	%read{102,156} %write{3,3}
+local	float	___427_inputS	%read{17,156} %write{12,73} %derivs
+local	float	___427_inputT	%read{17,154} %write{13,74} %derivs
+local	float	___427_textureFilterScale	%read{102,156} %write{16,16}
+local	color	___427_resultRGBA_d1.c	%read{103,158} %write{96,103} %mystruct{___427_resultRGBA_d1} %mystructfield{0}
+local	float	___427_resultRGBA_d1.a	%read{2147483647,-1} %write{97,102} %mystruct{___427_resultRGBA_d1} %mystructfield{1}
+local	color	___427_resultRGBA_d2.c	%read{130,159} %write{123,130} %mystruct{___427_resultRGBA_d2} %mystructfield{0}
+local	float	___427_resultRGBA_d2.a	%read{2147483647,-1} %write{124,129} %mystruct{___427_resultRGBA_d2} %mystructfield{1}
+local	color	___427_resultTest.c	%read{157,160} %write{150,157} %mystruct{___427_resultTest} %mystructfield{0}
+local	float	___427_resultTest.a	%read{2147483647,-1} %write{151,156} %mystruct{___427_resultTest} %mystructfield{1}
+local	color	___427_deriv1	%read{180,304} %write{158,158}
+local	color	___427_deriv2	%read{182,184} %write{159,159}
+local	vector	___427_UV	%read{6,7} %write{4,5} %derivs
+local	int	___427_hasUV	%read{2147483647,-1} %write{5,5}
+local	point	___427_QT	%read{73,74} %write{72,72} %derivs
+local	float	___427_mys	%read{164,166} %write{75,75} %derivs
+local	float	___427_myt	%read{165,167} %write{76,76} %derivs
+local	vector	___427_pPps	%read{189,267} %write{175,200}
+local	vector	___427_pPpt	%read{189,271} %write{179,201}
+local	float	___427_dx	%read{187,225} %write{180,187}
+local	float	___427_dy	%read{188,229} %write{181,188}
+local	float	___427_dxdx	%read{222,222} %write{182,182}
+local	float	___427_dydy	%read{230,230} %write{183,183}
+local	float	___427_dxdy	%read{226,226} %write{184,184}
+local	vector	___427_PN	%read{191,216} %write{189,198}
+local	int	___427_lefthanded	%read{196,202} %write{190,194}
+local	float	___427_vargain	%read{220,228} %write{219,219}
+local	float	___427_sxx	%read{233,246} %write{223,223}
+local	float	___427_sxy	%read{234,258} %write{227,227}
+local	float	___427_syy	%read{238,257} %write{231,231}
+local	float	___427_l1	%read{251,274} %write{245,245}
+local	float	___427_l2	%read{257,275} %write{248,248}
+local	vector	___427_v1	%read{254,264} %write{249,254}
+local	vector	___427_v2	%read{260,270} %write{255,260}
+local	vector	___427__pPpu	%read{303,303} %write{266,266}
+local	vector	___427__pPpv	%read{2147483647,-1} %write{272,272}
+local	float	___427_base_roughsqr	%read{274,275} %write{273,273}
+local	float	___427_varianceU	%read{276,299} %write{274,296}
+local	float	___427_varianceV	%read{278,300} %write{275,298}
+local	float	___427_resultRoughnessU	%read{280,302} %write{277,299}
+local	float	___427_resultRoughnessV	%read{280,280} %write{279,300}
+local	float	___427_rudivrv	%read{281,282} %write{280,280}
+local	float	___427_resultAnisotropy	%read{286,301} %write{283,289}
+local	float	___430__alpha	%read{296,297} %write{294,294}
+local	float	___430_variance	%read{296,298} %write{295,295}
+const	normal	$const1	0 0 0		%read{0,0} %write{2147483647,-1}
+const	int	$const2	1		%read{1,270} %write{2147483647,-1}
+temp	int	$tmp1	%read{2,2} %write{1,1}
+const	string	$const3	"smartcubic"		%read{3,3} %write{2147483647,-1}
+const	float	$const4	0		%read{4,289} %write{2147483647,-1}
+const	string	$const5	"geom:uv"		%read{5,5} %write{2147483647,-1}
+const	int	$const6	0		%read{6,304} %write{2147483647,-1}
+temp	float	$tmp2	%read{14,14} %write{6,6} %derivs
+temp	float	$tmp3	%read{15,15} %write{7,7} %derivs
+const	string	$const7	"Texture_Std_SetupInputs"		%read{8,8} %write{2147483647,-1}
+const	string	$const8	"Texture_GetSTWithManifold"		%read{9,9} %write{2147483647,-1}
+temp	int	$tmp4	%read{11,11} %write{10,10}
+temp	point	$tmp5	%read{72,72} %write{71,71} %derivs
+temp	point	$tmp6	%read{69,69} %write{17,17} %derivs
+temp	float	$tmp7	%read{24,24} %write{20,20} %derivs
+const	string	$const9	"radians"		%read{18,18} %write{2147483647,-1}
+const	float	$const10	3.14159274		%read{19,19} %write{2147483647,-1}
+const	float	$const11	180		%read{19,19} %write{2147483647,-1}
+temp	float	$tmp8	%read{20,20} %write{19,19} %derivs
+const	point	$const12	0 0 0		%read{22,71} %write{2147483647,-1}
+const	point	$const13	0 0 1		%read{22,22} %write{2147483647,-1}
+const	string	$const14	"rotate"		%read{21,21} %write{2147483647,-1}
+temp	vector	$tmp11	%read{23,23} %write{22,22} %derivs
+const	float	$const15	1		%read{25,301} %write{2147483647,-1}
+const	int	$const16	2		%read{28,215} %write{2147483647,-1}
+temp	float	$tmp12	%read{33,33} %write{29,29} %derivs
+temp	float	$tmp13	%read{31,31} %write{30,30} %derivs
+temp	float	$tmp14	%read{32,32} %write{31,31} %derivs
+temp	float	$tmp15	%read{33,33} %write{32,32} %derivs
+temp	float	$tmp16	%read{68,68} %write{33,33} %derivs
+temp	float	$tmp17	%read{35,35} %write{34,34} %derivs
+temp	float	$tmp18	%read{37,37} %write{35,35} %derivs
+temp	float	$tmp19	%read{37,37} %write{36,36} %derivs
+temp	float	$tmp20	%read{68,68} %write{37,37} %derivs
+temp	float	$tmp21	%read{39,39} %write{38,38} %derivs
+temp	float	$tmp22	%read{41,41} %write{39,39} %derivs
+temp	float	$tmp23	%read{41,41} %write{40,40} %derivs
+temp	float	$tmp24	%read{68,68} %write{41,41} %derivs
+temp	float	$tmp25	%read{43,43} %write{42,42} %derivs
+temp	float	$tmp26	%read{45,45} %write{43,43} %derivs
+temp	float	$tmp27	%read{45,45} %write{44,44} %derivs
+temp	float	$tmp28	%read{68,68} %write{45,45} %derivs
+temp	float	$tmp29	%read{50,50} %write{46,46} %derivs
+temp	float	$tmp30	%read{48,48} %write{47,47} %derivs
+temp	float	$tmp31	%read{49,49} %write{48,48} %derivs
+temp	float	$tmp32	%read{50,50} %write{49,49} %derivs
+temp	float	$tmp33	%read{68,68} %write{50,50} %derivs
+temp	float	$tmp34	%read{52,52} %write{51,51} %derivs
+temp	float	$tmp35	%read{54,54} %write{52,52} %derivs
+temp	float	$tmp36	%read{54,54} %write{53,53} %derivs
+temp	float	$tmp37	%read{68,68} %write{54,54} %derivs
+temp	float	$tmp38	%read{56,56} %write{55,55} %derivs
+temp	float	$tmp39	%read{58,58} %write{56,56} %derivs
+temp	float	$tmp40	%read{58,58} %write{57,57} %derivs
+temp	float	$tmp41	%read{68,68} %write{58,58} %derivs
+temp	float	$tmp42	%read{60,60} %write{59,59} %derivs
+temp	float	$tmp43	%read{62,62} %write{60,60} %derivs
+temp	float	$tmp44	%read{62,62} %write{61,61} %derivs
+temp	float	$tmp45	%read{68,68} %write{62,62} %derivs
+temp	float	$tmp46	%read{67,67} %write{63,63} %derivs
+temp	float	$tmp47	%read{65,65} %write{64,64} %derivs
+temp	float	$tmp48	%read{66,66} %write{65,65} %derivs
+temp	float	$tmp49	%read{67,67} %write{66,66} %derivs
+temp	float	$tmp50	%read{68,68} %write{67,67} %derivs
+temp	vector	$tmp51	%read{71,71} %write{70,70} %derivs
+temp	vector	$tmp52	%read{70,70} %write{69,69} %derivs
+const	color	$const17	0 0 0		%read{96,156} %write{2147483647,-1}
+const	string	$const18	"Texture_GetColor"		%read{77,132} %write{2147483647,-1}
+const	string	$const19	""		%read{80,145} %write{2147483647,-1}
+temp	int	$tmp54	%read{81,81} %write{80,80}
+temp	int	$tmp55	%read{84,84} %write{83,83}
+temp	int	$tmp56	%read{2147483647,-1} %write{85,85}
+const	string	$const20	"exists"		%read{85,139} %write{2147483647,-1}
+temp	int	$tmp57	%read{87,87} %write{86,86}
+temp	int	$tmp58	%read{89,89} %write{88,88}
+temp	int	$tmp59	%read{90,94} %write{89,93}
+temp	int	$tmp60	%read{92,92} %write{91,91}
+temp	int	$tmp61	%read{93,93} %write{92,92}
+const	string	$const21	"texture not found \\'%s\\'"		%read{95,149} %write{2147483647,-1}
+const	string	$const22	"TEXTURE NOT FOUND"		%read{98,152} %write{2147483647,-1}
+const	string	$const23	"TEXTURE FOUND"		%read{99,153} %write{2147483647,-1}
+temp	float	$tmp62	%read{102,102} %write{100,100} %derivs
+const	string	$const24	"alpha"		%read{102,156} %write{2147483647,-1}
+const	string	$const25	"interp"		%read{102,156} %write{2147483647,-1}
+const	string	$const26	"blur"		%read{102,156} %write{2147483647,-1}
+const	string	$const27	"missingcolor"		%read{102,156} %write{2147483647,-1}
+const	string	$const28	"missingalpha"		%read{102,156} %write{2147483647,-1}
+const	string	$const29	"fill"		%read{102,156} %write{2147483647,-1}
+const	string	$const30	"firstchannel"		%read{102,156} %write{2147483647,-1}
+const	string	$const31	"width"		%read{102,156} %write{2147483647,-1}
+const	string	$const32	"subimage"		%read{102,156} %write{2147483647,-1}
+temp	int	$tmp63	%read{102,102} %write{101,101}
+const	int	$const33	3		%read{129,129} %write{2147483647,-1}
+temp	int	$tmp65	%read{108,108} %write{107,107}
+temp	int	$tmp66	%read{111,111} %write{110,110}
+temp	int	$tmp67	%read{2147483647,-1} %write{112,112}
+temp	int	$tmp68	%read{114,114} %write{113,113}
+temp	int	$tmp69	%read{116,116} %write{115,115}
+temp	int	$tmp70	%read{117,121} %write{116,120}
+temp	int	$tmp71	%read{119,119} %write{118,118}
+temp	int	$tmp72	%read{120,120} %write{119,119}
+temp	float	$tmp73	%read{129,129} %write{127,127} %derivs
+temp	int	$tmp74	%read{129,129} %write{128,128}
+temp	int	$tmp76	%read{135,135} %write{134,134}
+temp	int	$tmp77	%read{138,138} %write{137,137}
+temp	int	$tmp78	%read{2147483647,-1} %write{139,139}
+temp	int	$tmp79	%read{141,141} %write{140,140}
+temp	int	$tmp80	%read{143,143} %write{142,142}
+temp	int	$tmp81	%read{144,148} %write{143,147}
+temp	int	$tmp82	%read{146,146} %write{145,145}
+temp	int	$tmp83	%read{147,147} %write{146,146}
+temp	float	$tmp84	%read{156,156} %write{154,154} %derivs
+temp	int	$tmp85	%read{156,156} %write{155,155}
+const	string	$const34	"partialDeriv"		%read{161,161} %write{2147483647,-1}
+temp	float	$tmp86	%read{170,170} %write{168,168}
+temp	float	$tmp87	%read{170,170} %write{169,169}
+temp	float	$tmp88	%read{171,171} %write{170,170}
+temp	vector	$tmp89	%read{174,174} %write{172,172}
+temp	vector	$tmp90	%read{174,174} %write{173,173}
+temp	vector	$tmp91	%read{175,175} %write{174,174}
+temp	vector	$tmp92	%read{178,178} %write{176,176}
+temp	vector	$tmp93	%read{178,178} %write{177,177}
+temp	vector	$tmp94	%read{179,179} %write{178,178}
+temp	int	$tmp95	%read{186,186} %write{185,185}
+temp	float	$tmp96	%read{192,192} %write{191,191}
+temp	int	$tmp97	%read{193,193} %write{192,192}
+temp	int	$tmp98	%read{197,197} %write{196,196}
+temp	vector	$tmp99	%read{200,200} %write{199,199}
+temp	int	$tmp100	%read{203,203} %write{202,202}
+temp	float	$tmp101	%read{206,206} %write{204,204}
+temp	float	$tmp102	%read{206,206} %write{205,205}
+temp	float	$tmp103	%read{209,209} %write{207,207}
+temp	float	$tmp104	%read{209,209} %write{208,208}
+const	float	$const36	-1		%read{209,209} %write{2147483647,-1}
+temp	float	$tmp105	%read{211,211} %write{210,210}
+temp	vector	$tmp106	%read{214,214} %write{211,211}
+temp	float	$tmp107	%read{213,213} %write{212,212}
+temp	vector	$tmp108	%read{214,214} %write{213,213}
+temp	vector	$tmp109	%read{217,217} %write{214,214}
+temp	float	$tmp110	%read{216,216} %write{215,215}
+temp	vector	$tmp111	%read{217,217} %write{216,216}
+temp	float	$tmp112	%read{223,223} %write{220,220}
+const	float	$const37	2		%read{220,293} %write{2147483647,-1}
+temp	float	$tmp113	%read{222,222} %write{221,221}
+temp	float	$tmp114	%read{223,223} %write{222,222}
+temp	float	$tmp115	%read{227,227} %write{224,224}
+temp	float	$tmp116	%read{226,226} %write{225,225}
+temp	float	$tmp117	%read{227,227} %write{226,226}
+temp	float	$tmp118	%read{231,231} %write{228,228}
+temp	float	$tmp119	%read{230,230} %write{229,229}
+temp	float	$tmp120	%read{231,231} %write{230,230}
+const	string	$const38	"covarToEigen2D"		%read{232,232} %write{2147483647,-1}
+temp	float	$tmp121	%read{236,236} %write{233,233}
+temp	float	$tmp122	%read{235,235} %write{234,234}
+const	float	$const40	4		%read{234,234} %write{2147483647,-1}
+temp	float	$tmp123	%read{236,236} %write{235,235}
+temp	float	$tmp124	%read{239,239} %write{236,236}
+temp	float	$tmp125	%read{238,238} %write{237,237}
 temp	float	$tmp126	%read{239,239} %write{238,238}
-const	float	$const40	4		%read{238,238} %write{2147483647,-1}
-temp	float	$tmp127	%read{240,240} %write{239,239}
-temp	float	$tmp128	%read{243,243} %write{240,240}
+temp	float	$tmp127	%read{241,241} %write{239,239}
+temp	float	$tmp128	%read{241,241} %write{240,240}
 temp	float	$tmp129	%read{242,242} %write{241,241}
-temp	float	$tmp130	%read{243,243} %write{242,242}
-temp	float	$tmp131	%read{245,245} %write{243,243}
-temp	float	$tmp132	%read{245,245} %write{244,244}
-temp	float	$tmp133	%read{246,246} %write{245,245}
-const	float	$const41	0.5		%read{249,252} %write{2147483647,-1}
-temp	float	$tmp134	%read{248,248} %write{247,247}
-temp	float	$tmp135	%read{249,249} %write{248,248}
-temp	float	$tmp136	%read{251,251} %write{250,250}
-temp	float	$tmp137	%read{252,252} %write{251,251}
-const	vector	$const42	0 0 0		%read{253,259} %write{2147483647,-1}
-temp	float	$tmp138	%read{256,256} %write{255,255}
-temp	float	$tmp139	%read{257,257} %write{256,256}
-temp	float	$tmp140	%read{262,262} %write{261,261}
-temp	float	$tmp141	%read{263,263} %write{262,262}
-temp	vector	$tmp142	%read{267,267} %write{265,265}
-temp	float	$tmp143	%read{267,267} %write{266,266}
-temp	vector	$tmp144	%read{270,270} %write{267,267}
-temp	float	$tmp145	%read{269,269} %write{268,268}
-temp	vector	$tmp146	%read{270,270} %write{269,269}
-temp	vector	$tmp147	%read{273,273} %write{271,271}
-temp	float	$tmp148	%read{273,273} %write{272,272}
-temp	vector	$tmp149	%read{276,276} %write{273,273}
-temp	float	$tmp150	%read{275,275} %write{274,274}
-temp	vector	$tmp151	%read{276,276} %write{275,275}
-temp	float	$tmp152	%read{281,281} %write{280,280}
-const	float	$const43	9.99999996e-13		%read{281,283} %write{2147483647,-1}
-temp	float	$tmp153	%read{283,283} %write{282,282}
-temp	float	$tmp154	%read{287,287} %write{285,285}
-temp	float	$tmp155	%read{287,287} %write{286,286}
-temp	int	$tmp156	%read{289,289} %write{288,288}
-temp	float	$tmp157	%read{292,292} %write{290,290}
-const	string	$const44	"clamp"		%read{291,291} %write{2147483647,-1}
-temp	float	$tmp158	%read{293,293} %write{292,292}
-temp	float	$tmp159	%read{296,296} %write{294,294}
-temp	float	$tmp160	%read{296,296} %write{295,295}
-temp	float	$tmp161	%read{297,297} %write{296,296}
-temp	float	$tmp162	%read{298,298} %write{297,297}
-temp	float	$tmp163	%read{302,302} %write{301,301}
-temp	float	$tmp164	%read{306,306} %write{305,305}
-const	vector	$const45	1 0 0		%read{311,311} %write{2147483647,-1}
+const	float	$const41	0.5		%read{245,248} %write{2147483647,-1}
+temp	float	$tmp130	%read{244,244} %write{243,243}
+temp	float	$tmp131	%read{245,245} %write{244,244}
+temp	float	$tmp132	%read{247,247} %write{246,246}
+temp	float	$tmp133	%read{248,248} %write{247,247}
+const	vector	$const42	0 0 0		%read{249,255} %write{2147483647,-1}
+temp	float	$tmp134	%read{252,252} %write{251,251}
+temp	float	$tmp135	%read{253,253} %write{252,252}
+temp	float	$tmp136	%read{258,258} %write{257,257}
+temp	float	$tmp137	%read{259,259} %write{258,258}
+temp	vector	$tmp138	%read{263,263} %write{261,261}
+temp	float	$tmp139	%read{263,263} %write{262,262}
+temp	vector	$tmp140	%read{266,266} %write{263,263}
+temp	float	$tmp141	%read{265,265} %write{264,264}
+temp	vector	$tmp142	%read{266,266} %write{265,265}
+temp	vector	$tmp143	%read{269,269} %write{267,267}
+temp	float	$tmp144	%read{269,269} %write{268,268}
+temp	vector	$tmp145	%read{272,272} %write{269,269}
+temp	float	$tmp146	%read{271,271} %write{270,270}
+temp	vector	$tmp147	%read{272,272} %write{271,271}
+temp	float	$tmp148	%read{277,277} %write{276,276}
+const	float	$const43	9.99999996e-13		%read{277,279} %write{2147483647,-1}
+temp	float	$tmp149	%read{279,279} %write{278,278}
+temp	float	$tmp150	%read{283,283} %write{281,281}
+temp	float	$tmp151	%read{283,283} %write{282,282}
+temp	int	$tmp152	%read{285,285} %write{284,284}
+temp	float	$tmp153	%read{288,288} %write{286,286}
+const	string	$const44	"clamp"		%read{287,287} %write{2147483647,-1}
+temp	float	$tmp154	%read{289,289} %write{288,288}
+temp	float	$tmp155	%read{292,292} %write{290,290}
+temp	float	$tmp156	%read{292,292} %write{291,291}
+temp	float	$tmp157	%read{293,293} %write{292,292}
+temp	float	$tmp158	%read{294,294} %write{293,293}
+temp	float	$tmp159	%read{298,298} %write{297,297}
+temp	float	$tmp160	%read{302,302} %write{301,301}
+code resultBumpNormal
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:120
+#         string widget="null",
+	assign		resultBumpNormal $const1 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{120} %argrw{"wr"}
 code ___main___
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:155
 #         string filter = "smartcubic";
-	eq		$tmp1 enable $const1 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{155} %argrw{"wrr"}
-	if		$tmp1 309 313 	%argrw{"r"}
+	eq		$tmp1 enable $const2 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{155} %argrw{"wrr"}
+	if		$tmp1 305 305 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:156
 #         // string filter = "smartbicubic";
-	assign		___427_filter $const2 	%line{156} %argrw{"wr"}
+	assign		___427_filter $const3 	%line{156} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:165
 #         int hasUV = getattribute( "geom:uv", UV);
-	assign		___427_UV $const3 	%line{165} %argrw{"wr"}
+	assign		___427_UV $const4 	%line{165} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:166
 #         
-	getattribute	___427_hasUV $const4 ___427_UV 	%line{166} %argrw{"wrw"}
+	getattribute	___427_hasUV $const5 ___427_UV 	%line{166} %argrw{"wrw"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:171
 #                                 filterScale, 
-	compref		$tmp2 ___427_UV $const5 	%line{171} %argrw{"wrr"}
-	compref		$tmp3 ___427_UV $const1 	%argrw{"wrr"}
-	functioncall	$const6 16 	%argrw{"r"}
+	compref		$tmp2 ___427_UV $const6 	%line{171} %argrw{"wrr"}
+	compref		$tmp3 ___427_UV $const2 	%argrw{"wrr"}
+	functioncall	$const7 17 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:110
 #     Texture_GetSTWithManifold(manifold, inputS, inputT, outputS, outputT);
-	functioncall	$const7 15 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{110} %argrw{"r"}
+	functioncall	$const8 16 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{110} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:92
 #     if (isconnected(manifold)) {
 	isconnected	$tmp4 inputManifold 	%line{92} %argrw{"wr"}
-	if		$tmp4 13 15 	%argrw{"r"}
+	if		$tmp4 14 16 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:93
 #         outputS = manifold.Q[0];
-	compref		___427_inputS inputManifold.Q $const5 	%line{93} %argrw{"wrr"}
+	compref		___427_inputS inputManifold.Q $const6 	%line{93} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:94
 #         outputT = manifold.Q[1];
-	compref		___427_inputT inputManifold.Q $const1 	%line{94} %argrw{"wrr"}
+	compref		___427_inputT inputManifold.Q $const2 	%line{94} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:96
 #         outputS = inputS;
 	assign		___427_inputS $tmp2 	%line{96} %argrw{"wr"}
@@ -334,35 +333,35 @@ code ___main___
 	assign		___427_textureFilterScale filterScale 	%line{112} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:183
 #                           point(0,0,0),point(0,0,1)) * frequency;
-	point		$tmp6 ___427_inputS ___427_inputT $const3 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{183} %argrw{"wrrr"}
-	functioncall	$const8 20 	%argrw{"r"}
+	point		$tmp6 ___427_inputS ___427_inputT $const4 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{183} %argrw{"wrrr"}
+	functioncall	$const9 21 	%argrw{"r"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:65
 # float  radians (float x)  { return x*(M_PI/180.0); }
-	div		$tmp8 $const9 $const10 	%filename{"C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{65} %argrw{"wrr"}
+	div		$tmp8 $const10 $const11 	%filename{"C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{65} %argrw{"wrr"}
 	mul		$tmp7 rotation $tmp8 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:183
 #                           point(0,0,0),point(0,0,1)) * frequency;
-	functioncall	$const13 71 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{183} %argrw{"r"}
+	functioncall	$const14 72 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{183} %argrw{"r"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:270
 #     vector axis = normalize (b - a);
-	sub		$tmp11 $const12 $const11 	%filename{"C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{270} %argrw{"wrr"}
+	sub		$tmp11 $const13 $const12 	%filename{"C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{270} %argrw{"wrr"}
 	normalize	___257_axis $tmp11 	%argrw{"wr"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:272
 #     sincos (angle, sinang, cosang);
 	sincos		$tmp7 ___257_sinang ___257_cosang 	%line{272} %argrw{"rww"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:273
 #     float cosang1 = 1.0 - cosang;
-	sub		___257_cosang1 $const14 ___257_cosang 	%line{273} %argrw{"wrr"}
+	sub		___257_cosang1 $const15 ___257_cosang 	%line{273} %argrw{"wrr"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:274
 #     float x = axis[0], y = axis[1], z = axis[2];
-	compref		___257_x ___257_axis $const5 	%line{274} %argrw{"wrr"}
-	compref		___257_y ___257_axis $const1 	%argrw{"wrr"}
-	compref		___257_z ___257_axis $const15 	%argrw{"wrr"}
+	compref		___257_x ___257_axis $const6 	%line{274} %argrw{"wrr"}
+	compref		___257_y ___257_axis $const2 	%argrw{"wrr"}
+	compref		___257_z ___257_axis $const16 	%argrw{"wrr"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:275
 #     matrix M = matrix (x * x + (1.0 - x * x) * cosang,
 	mul		$tmp12 ___257_x ___257_x 	%line{275} %argrw{"wrr"}
 	mul		$tmp13 ___257_x ___257_x 	%argrw{"wrr"}
-	sub		$tmp14 $const14 $tmp13 	%argrw{"wrr"}
+	sub		$tmp14 $const15 $tmp13 	%argrw{"wrr"}
 	mul		$tmp15 $tmp14 ___257_cosang 	%argrw{"wrr"}
 	add		$tmp16 $tmp12 $tmp15 	%argrw{"wrr"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:276
@@ -387,7 +386,7 @@ code ___main___
 #                        y * y + (1.0 - y * y) * cosang,
 	mul		$tmp29 ___257_y ___257_y 	%line{280} %argrw{"wrr"}
 	mul		$tmp30 ___257_y ___257_y 	%argrw{"wrr"}
-	sub		$tmp31 $const14 $tmp30 	%argrw{"wrr"}
+	sub		$tmp31 $const15 $tmp30 	%argrw{"wrr"}
 	mul		$tmp32 $tmp31 ___257_cosang 	%argrw{"wrr"}
 	add		$tmp33 $tmp29 $tmp32 	%argrw{"wrr"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:281
@@ -412,26 +411,26 @@ code ___main___
 #                        z * z + (1.0 - z * z) * cosang,
 	mul		$tmp46 ___257_z ___257_z 	%line{285} %argrw{"wrr"}
 	mul		$tmp47 ___257_z ___257_z 	%argrw{"wrr"}
-	sub		$tmp48 $const14 $tmp47 	%argrw{"wrr"}
+	sub		$tmp48 $const15 $tmp47 	%argrw{"wrr"}
 	mul		$tmp49 $tmp48 ___257_cosang 	%argrw{"wrr"}
 	add		$tmp50 $tmp46 $tmp49 	%argrw{"wrr"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:275
 #     matrix M = matrix (x * x + (1.0 - x * x) * cosang,
-	matrix		___257_M $tmp16 $tmp20 $tmp24 $const3 $tmp28 $tmp33 $tmp37 $const3 $tmp41 $tmp45 $tmp50 $const3 $const3 $const3 $const3 $const14 	%line{275} %argrw{"wrrrrrrrrrrrrrrrr"}
+	matrix		___257_M $tmp16 $tmp20 $tmp24 $const4 $tmp28 $tmp33 $tmp37 $const4 $tmp41 $tmp45 $tmp50 $const4 $const4 $const4 $const4 $const15 	%line{275} %argrw{"wrrrrrrrrrrrrrrrr"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:288
 #     return transform (M, p-a) + a;
-	sub		$tmp52 $tmp6 $const11 	%line{288} %argrw{"wrr"}
+	sub		$tmp52 $tmp6 $const12 	%line{288} %argrw{"wrr"}
 	transformv	$tmp51 ___257_M $tmp52 	%argrw{"wrr"}
-	add		$tmp5 $tmp51 $const11 	%argrw{"wrr"}
+	add		$tmp5 $tmp51 $const12 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:184
 #         inputS = QT[0];
 	mul		___427_QT $tmp5 frequency 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{184} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:185
 #         inputT = QT[1];
-	compref		___427_inputS ___427_QT $const5 	%line{185} %argrw{"wrr"}
+	compref		___427_inputS ___427_QT $const6 	%line{185} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:186
 #         
-	compref		___427_inputT ___427_QT $const1 	%line{186} %argrw{"wrr"}
+	compref		___427_inputT ___427_QT $const2 	%line{186} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:194
 #         float myt = inputT;
 	assign		___427_mys ___427_inputS 	%line{194} %argrw{"wr"}
@@ -440,186 +439,186 @@ code ___main___
 	assign		___427_myt ___427_inputT 	%line{195} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:210
 #                         filter, textureFilterScale, 0,
-	functioncall	$const17 103 	%line{210} %argrw{"r"}
+	functioncall	$const18 104 	%line{210} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:195
 #     Texture_GetColor(path, 
-	functioncall	$const17 103 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{195} %argrw{"r"}
+	functioncall	$const18 104 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{195} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:137
 #     int texExists = 1;
-	assign		___418_texExists $const1 	%line{137} %argrw{"wr"}
+	assign		___418_texExists $const2 	%line{137} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:138
 #     if (path == "") {
-	eq		$tmp54 filename_d1 $const18 	%line{138} %argrw{"wrr"}
-	if		$tmp54 82 85 	%argrw{"r"}
+	eq		$tmp54 filename_d1 $const19 	%line{138} %argrw{"wrr"}
+	if		$tmp54 83 86 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:139
 #         texExists = 0;
-	assign		___418_texExists $const5 	%line{139} %argrw{"wr"}
+	assign		___418_texExists $const6 	%line{139} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:142
 #         if (checkMissing > 0) {
-	gt		$tmp55 $const5 $const5 	%line{142} %argrw{"wrr"}
-	if		$tmp55 85 85 	%argrw{"r"}
+	gt		$tmp55 $const6 $const6 	%line{142} %argrw{"wrr"}
+	if		$tmp55 86 86 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:146
 #             gettextureinfo(path, "exists", texExists);
-	gettextureinfo	$tmp56 filename_d1 $const19 ___418_texExists 	%line{146} %argrw{"wrrw"}
+	gettextureinfo	$tmp56 filename_d1 $const20 ___418_texExists 	%line{146} %argrw{"wrrw"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:149
 #     if (texExists == 0) {
-	eq		$tmp57 ___418_texExists $const5 	%line{149} %argrw{"wrr"}
-	if		$tmp57 98 103 	%argrw{"r"}
+	eq		$tmp57 ___418_texExists $const6 	%line{149} %argrw{"wrr"}
+	if		$tmp57 99 104 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:150
 #         if (checkMissing == 1 && path != "") {
-	eq		$tmp58 $const5 $const1 	%line{150} %argrw{"wrr"}
-	neq		$tmp59 $tmp58 $const5 	%argrw{"wrr"}
-	if		$tmp59 93 93 	%argrw{"r"}
-	neq		$tmp60 filename_d1 $const18 	%argrw{"wrr"}
-	neq		$tmp61 $tmp60 $const5 	%argrw{"wrr"}
+	eq		$tmp58 $const6 $const2 	%line{150} %argrw{"wrr"}
+	neq		$tmp59 $tmp58 $const6 	%argrw{"wrr"}
+	if		$tmp59 94 94 	%argrw{"r"}
+	neq		$tmp60 filename_d1 $const19 	%argrw{"wrr"}
+	neq		$tmp61 $tmp60 $const6 	%argrw{"wrr"}
 	assign		$tmp59 $tmp61 	%argrw{"wr"}
-	if		$tmp59 95 95 	%argrw{"r"}
+	if		$tmp59 96 96 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:151
 #             warning("texture not found \'%s\'", path);
-	warning		$const20 filename_d1 	%line{151} %argrw{"rr"}
+	warning		$const21 filename_d1 	%line{151} %argrw{"rr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:153
 #         result.c = missingColor;
-	assign		___427_resultRGBA_d1.c $const16 	%line{153} %argrw{"wr"}
+	assign		___427_resultRGBA_d1.c $const17 	%line{153} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:154
 #         result.a = missingAlpha;
-	assign		___427_resultRGBA_d1.a $const3 	%line{154} %argrw{"wr"}
+	assign		___427_resultRGBA_d1.a $const4 	%line{154} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:156
 #         warning("TEXTURE NOT FOUND");
-	warning		$const21 	%line{156} %argrw{"r"}
+	warning		$const22 	%line{156} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:160
 #         warning("TEXTURE FOUND");
-	warning		$const22 	%line{160} %argrw{"r"}
+	warning		$const23 	%line{160} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:161
 #         result.c = texture(path, s, 1.0 - t, 
-	sub		$tmp62 $const14 ___427_inputT 	%line{161} %argrw{"wrr"}
+	sub		$tmp62 $const15 ___427_inputT 	%line{161} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:174
 #                 "subimage", max(subimage, 0)
-	max		$tmp63 $const5 $const5 	%line{174} %argrw{"wrr"}
+	max		$tmp63 $const6 $const6 	%line{174} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:161
 #         result.c = texture(path, s, 1.0 - t, 
-	texture		___427_resultRGBA_d1.c filename_d1 ___427_inputS $tmp62 $const23 ___427_resultRGBA_d1.a $const24 ___427_filter $const25 $const3 $const26 $const16 $const27 $const3 $const28 $const14 $const29 $const5 $const30 ___427_textureFilterScale $const31 $tmp63 	%line{161} %argrw{"wrrrrwrrrrrrrrrrrrrrrr"} %argderivs{2,3}
+	texture		___427_resultRGBA_d1.c filename_d1 ___427_inputS $tmp62 $const24 ___427_resultRGBA_d1.a $const25 ___427_filter $const26 $const4 $const27 $const17 $const28 $const4 $const29 $const15 $const30 $const6 $const31 ___427_textureFilterScale $const32 $tmp63 	%line{161} %argrw{"wrrrrwrrrrrrrrrrrrrrrr"} %argderivs{2,3}
 	assign		___427_resultRGBA_d1.c ___427_resultRGBA_d1.c 	%argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:215
 #                         filter, textureFilterScale, 0,
-	functioncall	$const17 130 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{215} %argrw{"r"}
+	functioncall	$const18 131 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{215} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:195
 #     Texture_GetColor(path, 
-	functioncall	$const17 130 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{195} %argrw{"r"}
+	functioncall	$const18 131 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{195} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:137
 #     int texExists = 1;
-	assign		___418_texExists $const1 	%line{137} %argrw{"wr"}
+	assign		___418_texExists $const2 	%line{137} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:138
 #     if (path == "") {
-	eq		$tmp65 filename_d1 $const18 	%line{138} %argrw{"wrr"}
-	if		$tmp65 109 112 	%argrw{"r"}
+	eq		$tmp65 filename_d1 $const19 	%line{138} %argrw{"wrr"}
+	if		$tmp65 110 113 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:139
 #         texExists = 0;
-	assign		___418_texExists $const5 	%line{139} %argrw{"wr"}
+	assign		___418_texExists $const6 	%line{139} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:142
 #         if (checkMissing > 0) {
-	gt		$tmp66 $const5 $const5 	%line{142} %argrw{"wrr"}
-	if		$tmp66 112 112 	%argrw{"r"}
+	gt		$tmp66 $const6 $const6 	%line{142} %argrw{"wrr"}
+	if		$tmp66 113 113 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:146
 #             gettextureinfo(path, "exists", texExists);
-	gettextureinfo	$tmp67 filename_d1 $const19 ___418_texExists 	%line{146} %argrw{"wrrw"}
+	gettextureinfo	$tmp67 filename_d1 $const20 ___418_texExists 	%line{146} %argrw{"wrrw"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:149
 #     if (texExists == 0) {
-	eq		$tmp68 ___418_texExists $const5 	%line{149} %argrw{"wrr"}
-	if		$tmp68 125 130 	%argrw{"r"}
+	eq		$tmp68 ___418_texExists $const6 	%line{149} %argrw{"wrr"}
+	if		$tmp68 126 131 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:150
 #         if (checkMissing == 1 && path != "") {
-	eq		$tmp69 $const5 $const1 	%line{150} %argrw{"wrr"}
-	neq		$tmp70 $tmp69 $const5 	%argrw{"wrr"}
-	if		$tmp70 120 120 	%argrw{"r"}
-	neq		$tmp71 filename_d1 $const18 	%argrw{"wrr"}
-	neq		$tmp72 $tmp71 $const5 	%argrw{"wrr"}
+	eq		$tmp69 $const6 $const2 	%line{150} %argrw{"wrr"}
+	neq		$tmp70 $tmp69 $const6 	%argrw{"wrr"}
+	if		$tmp70 121 121 	%argrw{"r"}
+	neq		$tmp71 filename_d1 $const19 	%argrw{"wrr"}
+	neq		$tmp72 $tmp71 $const6 	%argrw{"wrr"}
 	assign		$tmp70 $tmp72 	%argrw{"wr"}
-	if		$tmp70 122 122 	%argrw{"r"}
+	if		$tmp70 123 123 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:151
 #             warning("texture not found \'%s\'", path);
-	warning		$const20 filename_d1 	%line{151} %argrw{"rr"}
+	warning		$const21 filename_d1 	%line{151} %argrw{"rr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:153
 #         result.c = missingColor;
-	assign		___427_resultRGBA_d2.c $const16 	%line{153} %argrw{"wr"}
+	assign		___427_resultRGBA_d2.c $const17 	%line{153} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:154
 #         result.a = missingAlpha;
-	assign		___427_resultRGBA_d2.a $const3 	%line{154} %argrw{"wr"}
+	assign		___427_resultRGBA_d2.a $const4 	%line{154} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:156
 #         warning("TEXTURE NOT FOUND");
-	warning		$const21 	%line{156} %argrw{"r"}
+	warning		$const22 	%line{156} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:160
 #         warning("TEXTURE FOUND");
-	warning		$const22 	%line{160} %argrw{"r"}
+	warning		$const23 	%line{160} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:161
 #         result.c = texture(path, s, 1.0 - t, 
-	sub		$tmp73 $const14 ___427_inputT 	%line{161} %argrw{"wrr"}
+	sub		$tmp73 $const15 ___427_inputT 	%line{161} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:174
 #                 "subimage", max(subimage, 0)
-	max		$tmp74 $const5 $const5 	%line{174} %argrw{"wrr"}
+	max		$tmp74 $const6 $const6 	%line{174} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:161
 #         result.c = texture(path, s, 1.0 - t, 
-	texture		___427_resultRGBA_d2.c filename_d1 ___427_inputS $tmp73 $const23 ___427_resultRGBA_d2.a $const24 ___427_filter $const25 $const3 $const26 $const16 $const27 $const3 $const28 $const14 $const29 $const32 $const30 ___427_textureFilterScale $const31 $tmp74 	%line{161} %argrw{"wrrrrwrrrrrrrrrrrrrrrr"} %argderivs{2,3}
+	texture		___427_resultRGBA_d2.c filename_d1 ___427_inputS $tmp73 $const24 ___427_resultRGBA_d2.a $const25 ___427_filter $const26 $const4 $const27 $const17 $const28 $const4 $const29 $const15 $const30 $const33 $const31 ___427_textureFilterScale $const32 $tmp74 	%line{161} %argrw{"wrrrrwrrrrrrrrrrrrrrrr"} %argderivs{2,3}
 	assign		___427_resultRGBA_d2.c ___427_resultRGBA_d2.c 	%argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:220
 #                 filter, textureFilterScale, 0,
-	functioncall	$const17 157 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{220} %argrw{"r"}
+	functioncall	$const18 158 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{220} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:195
 #     Texture_GetColor(path, 
-	functioncall	$const17 157 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{195} %argrw{"r"}
+	functioncall	$const18 158 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{195} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:137
 #     int texExists = 1;
-	assign		___418_texExists $const1 	%line{137} %argrw{"wr"}
+	assign		___418_texExists $const2 	%line{137} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:138
 #     if (path == "") {
-	eq		$tmp76 filename_check $const18 	%line{138} %argrw{"wrr"}
-	if		$tmp76 136 139 	%argrw{"r"}
+	eq		$tmp76 filename_check $const19 	%line{138} %argrw{"wrr"}
+	if		$tmp76 137 140 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:139
 #         texExists = 0;
-	assign		___418_texExists $const5 	%line{139} %argrw{"wr"}
+	assign		___418_texExists $const6 	%line{139} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:142
 #         if (checkMissing > 0) {
-	gt		$tmp77 $const5 $const5 	%line{142} %argrw{"wrr"}
-	if		$tmp77 139 139 	%argrw{"r"}
+	gt		$tmp77 $const6 $const6 	%line{142} %argrw{"wrr"}
+	if		$tmp77 140 140 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:146
 #             gettextureinfo(path, "exists", texExists);
-	gettextureinfo	$tmp78 filename_check $const19 ___418_texExists 	%line{146} %argrw{"wrrw"}
+	gettextureinfo	$tmp78 filename_check $const20 ___418_texExists 	%line{146} %argrw{"wrrw"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:149
 #     if (texExists == 0) {
-	eq		$tmp79 ___418_texExists $const5 	%line{149} %argrw{"wrr"}
-	if		$tmp79 152 157 	%argrw{"r"}
+	eq		$tmp79 ___418_texExists $const6 	%line{149} %argrw{"wrr"}
+	if		$tmp79 153 158 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:150
 #         if (checkMissing == 1 && path != "") {
-	eq		$tmp80 $const5 $const1 	%line{150} %argrw{"wrr"}
-	neq		$tmp81 $tmp80 $const5 	%argrw{"wrr"}
-	if		$tmp81 147 147 	%argrw{"r"}
-	neq		$tmp82 filename_check $const18 	%argrw{"wrr"}
-	neq		$tmp83 $tmp82 $const5 	%argrw{"wrr"}
+	eq		$tmp80 $const6 $const2 	%line{150} %argrw{"wrr"}
+	neq		$tmp81 $tmp80 $const6 	%argrw{"wrr"}
+	if		$tmp81 148 148 	%argrw{"r"}
+	neq		$tmp82 filename_check $const19 	%argrw{"wrr"}
+	neq		$tmp83 $tmp82 $const6 	%argrw{"wrr"}
 	assign		$tmp81 $tmp83 	%argrw{"wr"}
-	if		$tmp81 149 149 	%argrw{"r"}
+	if		$tmp81 150 150 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:151
 #             warning("texture not found \'%s\'", path);
-	warning		$const20 filename_check 	%line{151} %argrw{"rr"}
+	warning		$const21 filename_check 	%line{151} %argrw{"rr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:153
 #         result.c = missingColor;
-	assign		___427_resultTest.c $const16 	%line{153} %argrw{"wr"}
+	assign		___427_resultTest.c $const17 	%line{153} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:154
 #         result.a = missingAlpha;
-	assign		___427_resultTest.a $const3 	%line{154} %argrw{"wr"}
+	assign		___427_resultTest.a $const4 	%line{154} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:156
 #         warning("TEXTURE NOT FOUND");
-	warning		$const21 	%line{156} %argrw{"r"}
+	warning		$const22 	%line{156} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:160
 #         warning("TEXTURE FOUND");
-	warning		$const22 	%line{160} %argrw{"r"}
+	warning		$const23 	%line{160} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:161
 #         result.c = texture(path, s, 1.0 - t, 
-	sub		$tmp84 $const14 ___427_inputT 	%line{161} %argrw{"wrr"}
+	sub		$tmp84 $const15 ___427_inputT 	%line{161} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:174
 #                 "subimage", max(subimage, 0)
-	max		$tmp85 $const5 $const5 	%line{174} %argrw{"wrr"}
+	max		$tmp85 $const6 $const6 	%line{174} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:161
 #         result.c = texture(path, s, 1.0 - t, 
-	texture		___427_resultTest.c filename_check ___427_inputS $tmp84 $const23 ___427_resultTest.a $const24 ___427_filter $const25 $const3 $const26 $const16 $const27 $const3 $const28 $const14 $const29 $const5 $const30 ___427_textureFilterScale $const31 $tmp85 	%line{161} %argrw{"wrrrrwrrrrrrrrrrrrrrrr"} %argderivs{2,3}
+	texture		___427_resultTest.c filename_check ___427_inputS $tmp84 $const24 ___427_resultTest.a $const25 ___427_filter $const26 $const4 $const27 $const17 $const28 $const4 $const29 $const15 $const30 $const6 $const31 ___427_textureFilterScale $const32 $tmp85 	%line{161} %argrw{"wrrrrwrrrrrrrrrrrrrrrr"} %argderivs{2,3}
 	assign		___427_resultTest.c ___427_resultTest.c 	%argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:235
 #         deriv2 = resultRGBA_d2.c;
@@ -628,11 +627,11 @@ code ___main___
 #         
 	assign		___427_deriv2 ___427_resultRGBA_d2.c 	%line{236} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:238
-# 
+#         
 	assign		testTex ___427_resultTest.c 	%line{238} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:245
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:249
 #         // partialDeriv(P, u, v, pPps, pPpt);
-	functioncall	$const33 179 	%line{245} %argrw{"r"}
+	functioncall	$const34 180 	%line{249} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:68
 #     vector dQdx = Dx(Q);
 	Dx		___371_dQdx P 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h"} %line{68} %argrw{"wr"} %argderivs{1}
@@ -656,7 +655,7 @@ code ___main___
 	mul		$tmp86 ___371_A ___371_D 	%line{76} %argrw{"wrr"}
 	mul		$tmp87 ___371_B ___371_C 	%argrw{"wrr"}
 	sub		$tmp88 $tmp86 $tmp87 	%argrw{"wrr"}
-	div		___371_invdet $const14 $tmp88 	%argrw{"wrr"}
+	div		___371_invdet $const15 $tmp88 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:78
 #     dQda = (dQdx*D-dQdy*B)*invdet;
 	mul		$tmp89 ___371_dQdx ___371_D 	%line{78} %argrw{"wrr"}
@@ -669,153 +668,146 @@ code ___main___
 	mul		$tmp93 ___371_dQdx ___371_C 	%argrw{"wrr"}
 	sub		$tmp94 $tmp92 $tmp93 	%argrw{"wrr"}
 	mul		___427_pPpt $tmp94 ___371_invdet 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:250
-#         float dy=deriv1[2];
-	compref		___427_dx ___427_deriv1 $const1 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{250} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:251
-#         float dxdx=deriv2[0];
-	compref		___427_dy ___427_deriv1 $const15 	%line{251} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:252
-#         float dydy=deriv2[1];
-	compref		___427_dxdx ___427_deriv2 $const5 	%line{252} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:253
-#         float dxdy=deriv2[2];
-	compref		___427_dydy ___427_deriv2 $const1 	%line{253} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:254
+#         float dy=deriv1[2];
+	compref		___427_dx ___427_deriv1 $const2 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{254} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:255
+#         float dxdx=deriv2[0];
+	compref		___427_dy ___427_deriv1 $const16 	%line{255} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:256
+#         float dydy=deriv2[1];
+	compref		___427_dxdx ___427_deriv2 $const6 	%line{256} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:257
+#         float dxdy=deriv2[2];
+	compref		___427_dydy ___427_deriv2 $const2 	%line{257} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:258
 # 
-	compref		___427_dxdy ___427_deriv2 $const15 	%line{254} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:261
+	compref		___427_dxdy ___427_deriv2 $const16 	%line{258} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:265
 #             dx = -dx;
-	eq		$tmp95 invertBumpNormal $const5 	%line{261} %argrw{"wrr"}
-	if		$tmp95 188 188 	%argrw{"r"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:262
+	eq		$tmp95 invertBumpNormal $const6 	%line{265} %argrw{"wrr"}
+	if		$tmp95 189 189 	%argrw{"r"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:266
 #             dy = -dy;
-	neg		___427_dx ___427_dx 	%line{262} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:263
+	neg		___427_dx ___427_dx 	%line{266} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:267
 #         }
-	neg		___427_dy ___427_dy 	%line{263} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:273
+	neg		___427_dy ___427_dy 	%line{267} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:277
 #         // vector PN = cross(pPps, pPpt);
-	cross		___427_PN ___427_pPps ___427_pPpt 	%line{273} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:280
+	cross		___427_PN ___427_pPps ___427_pPpt 	%line{277} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:284
 #         if (dot(PN,Ng)<0) {
-	assign		___427_lefthanded $const5 	%line{280} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:281
+	assign		___427_lefthanded $const6 	%line{284} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:285
 #         // if (dot(PN,normalize(Ng))<0) {
-	dot		$tmp96 ___427_PN Ng 	%line{281} %argrw{"wrr"}
-	lt		$tmp97 $tmp96 $const5 	%argrw{"wrr"}
-	if		$tmp97 194 194 	%argrw{"r"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:287
+	dot		$tmp96 ___427_PN Ng 	%line{285} %argrw{"wrr"}
+	lt		$tmp97 $tmp96 $const6 	%argrw{"wrr"}
+	if		$tmp97 195 195 	%argrw{"r"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:291
 #         }
-	assign		___427_lefthanded $const1 	%line{287} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:303
+	assign		___427_lefthanded $const2 	%line{291} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:307
 #         // PN = (N);
-	normalize	___427_PN N 	%line{303} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:305
+	normalize	___427_PN N 	%line{307} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:309
 #         
-	eq		$tmp98 ___427_lefthanded $const1 	%line{305} %argrw{"wrr"}
-	if		$tmp98 198 198 	%argrw{"r"}
+	eq		$tmp98 ___427_lefthanded $const2 	%line{309} %argrw{"wrr"}
+	if		$tmp98 199 199 	%argrw{"r"}
 	neg		___427_PN ___427_PN 	%argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:310
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:314
 #         pPpt = cross(PN,pPps);
-	cross		$tmp99 ___427_pPpt ___427_PN 	%line{310} %argrw{"wrr"}
+	cross		$tmp99 ___427_pPpt ___427_PN 	%line{314} %argrw{"wrr"}
 	normalize	___427_pPps $tmp99 	%argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:311
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:315
 #         // pPpt = 1.0 - cross(PN,pPps);
-	cross		___427_pPpt ___427_PN ___427_pPps 	%line{311} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:324
+	cross		___427_pPpt ___427_PN ___427_pPps 	%line{315} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:328
 #         else resultBumpNormal = vector(dx*bumpNormalGain, dy*bumpNormalGain, -1);
-	eq		$tmp100 ___427_lefthanded $const5 	%line{324} %argrw{"wrr"}
-	if		$tmp100 206 209 	%argrw{"r"}
+	eq		$tmp100 ___427_lefthanded $const6 	%line{328} %argrw{"wrr"}
+	if		$tmp100 207 210 	%argrw{"r"}
 	mul		$tmp101 ___427_dx bumpNormalGain 	%argrw{"wrr"}
 	mul		$tmp102 ___427_dy bumpNormalGain 	%argrw{"wrr"}
-	vector		resultBumpNormal $tmp101 $tmp102 $const14 	%argrw{"wrrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:325
-#         
-	mul		$tmp103 ___427_dx bumpNormalGain 	%line{325} %argrw{"wrr"}
-	mul		$tmp104 ___427_dy bumpNormalGain 	%argrw{"wrr"}
-	vector		resultBumpNormal $tmp103 $tmp104 $const35 	%argrw{"wrrr"}
+	vector		resultBumpNormal $tmp101 $tmp102 $const15 	%argrw{"wrrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:329
 #         
-	mul		$tmp105 $const36 ___427_dx 	%line{329} %argrw{"wrr"}
-	mul		$tmp106 $tmp105 bumpNormalGain 	%argrw{"wrr"}
-	mul		$tmp107 $const36 ___427_dy 	%argrw{"wrr"}
-	mul		$tmp108 $tmp107 bumpNormalGain 	%argrw{"wrr"}
-	vector		resultBumpNormal $tmp106 $tmp108 $const14 	%argrw{"wrrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:355
+	mul		$tmp103 ___427_dx bumpNormalGain 	%line{329} %argrw{"wrr"}
+	mul		$tmp104 ___427_dy bumpNormalGain 	%argrw{"wrr"}
+	vector		resultBumpNormal $tmp103 $tmp104 $const36 	%argrw{"wrrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:359
 #                         + pPpt*resultBumpNormal[1]
-	compref		$tmp109 resultBumpNormal $const5 	%line{355} %argrw{"wrr"}
-	mul		$tmp110 ___427_pPps $tmp109 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:356
+	compref		$tmp105 resultBumpNormal $const6 	%line{359} %argrw{"wrr"}
+	mul		$tmp106 ___427_pPps $tmp105 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:360
 #                         + PN*resultBumpNormal[2];
-	compref		$tmp111 resultBumpNormal $const1 	%line{356} %argrw{"wrr"}
-	mul		$tmp112 ___427_pPpt $tmp111 	%argrw{"wrr"}
-	add		$tmp113 $tmp110 $tmp112 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:357
+	compref		$tmp107 resultBumpNormal $const2 	%line{360} %argrw{"wrr"}
+	mul		$tmp108 ___427_pPpt $tmp107 	%argrw{"wrr"}
+	add		$tmp109 $tmp106 $tmp108 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:361
 # 
-	compref		$tmp114 resultBumpNormal $const15 	%line{357} %argrw{"wrr"}
-	mul		$tmp115 ___427_PN $tmp114 	%argrw{"wrr"}
-	add		resultBumpNormal $tmp113 $tmp115 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:364
+	compref		$tmp110 resultBumpNormal $const16 	%line{361} %argrw{"wrr"}
+	mul		$tmp111 ___427_PN $tmp110 	%argrw{"wrr"}
+	add		resultBumpNormal $tmp109 $tmp111 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:368
 # 
-	normalize	resultBumpNormal resultBumpNormal 	%line{364} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:403
+	normalize	resultBumpNormal resultBumpNormal 	%line{368} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:407
 #         float sxx = 2*vargain*(dxdx - dx*dx);
-	mul		___427_vargain gain gain 	%line{403} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:404
+	mul		___427_vargain gain gain 	%line{407} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:408
 #         float sxy = 2*vargain*(dxdy - dx*dy);
-	mul		$tmp116 $const37 ___427_vargain 	%line{404} %argrw{"wrr"}
-	mul		$tmp117 ___427_dx ___427_dx 	%argrw{"wrr"}
-	sub		$tmp118 ___427_dxdx $tmp117 	%argrw{"wrr"}
-	mul		___427_sxx $tmp116 $tmp118 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:405
+	mul		$tmp112 $const37 ___427_vargain 	%line{408} %argrw{"wrr"}
+	mul		$tmp113 ___427_dx ___427_dx 	%argrw{"wrr"}
+	sub		$tmp114 ___427_dxdx $tmp113 	%argrw{"wrr"}
+	mul		___427_sxx $tmp112 $tmp114 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:409
 #         float syy = 2*vargain*(dydy - dy*dy);
-	mul		$tmp119 $const37 ___427_vargain 	%line{405} %argrw{"wrr"}
-	mul		$tmp120 ___427_dx ___427_dy 	%argrw{"wrr"}
-	sub		$tmp121 ___427_dxdy $tmp120 	%argrw{"wrr"}
-	mul		___427_sxy $tmp119 $tmp121 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:406
+	mul		$tmp115 $const37 ___427_vargain 	%line{409} %argrw{"wrr"}
+	mul		$tmp116 ___427_dx ___427_dy 	%argrw{"wrr"}
+	sub		$tmp117 ___427_dxdy $tmp116 	%argrw{"wrr"}
+	mul		___427_sxy $tmp115 $tmp117 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:410
 # 
-	mul		$tmp122 $const37 ___427_vargain 	%line{406} %argrw{"wrr"}
-	mul		$tmp123 ___427_dy ___427_dy 	%argrw{"wrr"}
-	sub		$tmp124 ___427_dydy $tmp123 	%argrw{"wrr"}
-	mul		___427_syy $tmp122 $tmp124 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:411
+	mul		$tmp118 $const37 ___427_vargain 	%line{410} %argrw{"wrr"}
+	mul		$tmp119 ___427_dy ___427_dy 	%argrw{"wrr"}
+	sub		$tmp120 ___427_dydy $tmp119 	%argrw{"wrr"}
+	mul		___427_syy $tmp118 $tmp120 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:415
 # 
-	functioncall	$const38 265 	%line{411} %argrw{"r"}
+	functioncall	$const38 261 	%line{415} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:110
 #     float del = sqrt(a*a+4*b*b-2*a*c+c*c);
-	mul		$tmp125 ___427_sxx ___427_sxx 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h"} %line{110} %argrw{"wrr"}
-	mul		$tmp126 $const40 ___427_sxy 	%argrw{"wrr"}
-	mul		$tmp127 $tmp126 ___427_sxy 	%argrw{"wrr"}
-	add		$tmp128 $tmp125 $tmp127 	%argrw{"wrr"}
-	mul		$tmp129 $const37 ___427_sxx 	%argrw{"wrr"}
-	mul		$tmp130 $tmp129 ___427_syy 	%argrw{"wrr"}
-	sub		$tmp131 $tmp128 $tmp130 	%argrw{"wrr"}
-	mul		$tmp132 ___427_syy ___427_syy 	%argrw{"wrr"}
-	add		$tmp133 $tmp131 $tmp132 	%argrw{"wrr"}
-	sqrt		___373_del $tmp133 	%argrw{"wr"}
+	mul		$tmp121 ___427_sxx ___427_sxx 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h"} %line{110} %argrw{"wrr"}
+	mul		$tmp122 $const40 ___427_sxy 	%argrw{"wrr"}
+	mul		$tmp123 $tmp122 ___427_sxy 	%argrw{"wrr"}
+	add		$tmp124 $tmp121 $tmp123 	%argrw{"wrr"}
+	mul		$tmp125 $const37 ___427_sxx 	%argrw{"wrr"}
+	mul		$tmp126 $tmp125 ___427_syy 	%argrw{"wrr"}
+	sub		$tmp127 $tmp124 $tmp126 	%argrw{"wrr"}
+	mul		$tmp128 ___427_syy ___427_syy 	%argrw{"wrr"}
+	add		$tmp129 $tmp127 $tmp128 	%argrw{"wrr"}
+	sqrt		___373_del $tmp129 	%argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:113
 #     l1 = .5*(a+c+del);
-	add		$tmp134 ___427_sxx ___427_syy 	%line{113} %argrw{"wrr"}
-	add		$tmp135 $tmp134 ___373_del 	%argrw{"wrr"}
-	mul		___427_l1 $const41 $tmp135 	%argrw{"wrr"}
+	add		$tmp130 ___427_sxx ___427_syy 	%line{113} %argrw{"wrr"}
+	add		$tmp131 $tmp130 ___373_del 	%argrw{"wrr"}
+	mul		___427_l1 $const41 $tmp131 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:114
 #     l2 = .5*(a+c-del);
-	add		$tmp136 ___427_sxx ___427_syy 	%line{114} %argrw{"wrr"}
-	sub		$tmp137 $tmp136 ___373_del 	%argrw{"wrr"}
-	mul		___427_l2 $const41 $tmp137 	%argrw{"wrr"}
+	add		$tmp132 ___427_sxx ___427_syy 	%line{114} %argrw{"wrr"}
+	sub		$tmp133 $tmp132 ___373_del 	%argrw{"wrr"}
+	mul		___427_l2 $const41 $tmp133 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:117
 #     v1=vector(0);
 	assign		___427_v1 $const42 	%line{117} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:118
 #     v1[1] = 1;
-	compassign	___427_v1 $const1 $const1 	%line{118} %argrw{"wrr"}
+	compassign	___427_v1 $const2 $const2 	%line{118} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:119
 #     v1[0] = (l1-c)/b;
-	sub		$tmp138 ___427_l1 ___427_syy 	%line{119} %argrw{"wrr"}
-	div		$tmp139 $tmp138 ___427_sxy 	%argrw{"wrr"}
-	compassign	___427_v1 $const5 $tmp139 	%argrw{"wrr"}
+	sub		$tmp134 ___427_l1 ___427_syy 	%line{119} %argrw{"wrr"}
+	div		$tmp135 $tmp134 ___427_sxy 	%argrw{"wrr"}
+	compassign	___427_v1 $const6 $tmp135 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:120
 #     v1 = normalize(v1);
 	normalize	___427_v1 ___427_v1 	%line{120} %argrw{"wr"}
@@ -824,119 +816,107 @@ code ___main___
 	assign		___427_v2 $const42 	%line{122} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:123
 #     v2[1] = 1;
-	compassign	___427_v2 $const1 $const1 	%line{123} %argrw{"wrr"}
+	compassign	___427_v2 $const2 $const2 	%line{123} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:124
 #     v2[0] = (l2-c)/b;
-	sub		$tmp140 ___427_l2 ___427_syy 	%line{124} %argrw{"wrr"}
-	div		$tmp141 $tmp140 ___427_sxy 	%argrw{"wrr"}
-	compassign	___427_v2 $const5 $tmp141 	%argrw{"wrr"}
+	sub		$tmp136 ___427_l2 ___427_syy 	%line{124} %argrw{"wrr"}
+	div		$tmp137 $tmp136 ___427_sxy 	%argrw{"wrr"}
+	compassign	___427_v2 $const6 $tmp137 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:125
 #     v2 = normalize(v2);
 	normalize	___427_v2 ___427_v2 	%line{125} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:423
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:427
 #         vector _pPpv = -pPps*v2[0]+pPpt*v2[1];
-	neg		$tmp142 ___427_pPps 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{423} %argrw{"wr"}
-	compref		$tmp143 ___427_v1 $const5 	%argrw{"wrr"}
-	mul		$tmp144 $tmp142 $tmp143 	%argrw{"wrr"}
-	compref		$tmp145 ___427_v1 $const1 	%argrw{"wrr"}
-	mul		$tmp146 ___427_pPpt $tmp145 	%argrw{"wrr"}
-	add		___427__pPpu $tmp144 $tmp146 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:424
+	neg		$tmp138 ___427_pPps 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{427} %argrw{"wr"}
+	compref		$tmp139 ___427_v1 $const6 	%argrw{"wrr"}
+	mul		$tmp140 $tmp138 $tmp139 	%argrw{"wrr"}
+	compref		$tmp141 ___427_v1 $const2 	%argrw{"wrr"}
+	mul		$tmp142 ___427_pPpt $tmp141 	%argrw{"wrr"}
+	add		___427__pPpu $tmp140 $tmp142 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:428
 # 
-	neg		$tmp147 ___427_pPps 	%line{424} %argrw{"wr"}
-	compref		$tmp148 ___427_v2 $const5 	%argrw{"wrr"}
-	mul		$tmp149 $tmp147 $tmp148 	%argrw{"wrr"}
-	compref		$tmp150 ___427_v2 $const1 	%argrw{"wrr"}
-	mul		$tmp151 ___427_pPpt $tmp150 	%argrw{"wrr"}
-	add		___427__pPpv $tmp149 $tmp151 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:426
+	neg		$tmp143 ___427_pPps 	%line{428} %argrw{"wr"}
+	compref		$tmp144 ___427_v2 $const6 	%argrw{"wrr"}
+	mul		$tmp145 $tmp143 $tmp144 	%argrw{"wrr"}
+	compref		$tmp146 ___427_v2 $const2 	%argrw{"wrr"}
+	mul		$tmp147 ___427_pPpt $tmp146 	%argrw{"wrr"}
+	add		___427__pPpv $tmp145 $tmp147 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:430
 #         
-	mul		___427_base_roughsqr baseRoughness baseRoughness 	%line{426} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:433
-#         float varianceV = l2+base_roughsqr;
-	add		___427_varianceU ___427_l1 ___427_base_roughsqr 	%line{433} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:434
-#         
-	add		___427_varianceV ___427_l2 ___427_base_roughsqr 	%line{434} %argrw{"wrr"}
+	mul		___427_base_roughsqr baseRoughness baseRoughness 	%line{430} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:437
-#         float resultRoughnessV = sqrt(varianceV)+1e-12;
-	sqrt		$tmp152 ___427_varianceU 	%line{437} %argrw{"wr"}
-	add		___427_resultRoughnessU $tmp152 $const43 	%argrw{"wrr"}
+#         float varianceV = l2+base_roughsqr;
+	add		___427_varianceU ___427_l1 ___427_base_roughsqr 	%line{437} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:438
 #         
-	sqrt		$tmp153 ___427_varianceV 	%line{438} %argrw{"wr"}
-	add		___427_resultRoughnessV $tmp153 $const43 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:440
-#         float resultAnisotropy = (rudivrv-1.0)/(rudivrv+1.0);
-	div		___427_rudivrv ___427_resultRoughnessU ___427_resultRoughnessV 	%line{440} %argrw{"wrr"}
+	add		___427_varianceV ___427_l2 ___427_base_roughsqr 	%line{438} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:441
-#             
-	sub		$tmp154 ___427_rudivrv $const14 	%line{441} %argrw{"wrr"}
-	add		$tmp155 ___427_rudivrv $const14 	%argrw{"wrr"}
-	div		___427_resultAnisotropy $tmp154 $tmp155 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:443
-#             resultAnisotropy = clamp(resultAnisotropy*anisotropyGain, 
-	neq		$tmp156 anisotropyGain $const14 	%line{443} %argrw{"wrr"}
-	if		$tmp156 305 305 	%argrw{"r"}
+#         float resultRoughnessV = sqrt(varianceV)+1e-12;
+	sqrt		$tmp148 ___427_varianceU 	%line{441} %argrw{"wr"}
+	add		___427_resultRoughnessU $tmp148 $const43 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:442
+#         
+	sqrt		$tmp149 ___427_varianceV 	%line{442} %argrw{"wr"}
+	add		___427_resultRoughnessV $tmp149 $const43 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:444
+#         float resultAnisotropy = (rudivrv-1.0)/(rudivrv+1.0);
+	div		___427_rudivrv ___427_resultRoughnessU ___427_resultRoughnessV 	%line{444} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:445
+#             
+	sub		$tmp150 ___427_rudivrv $const15 	%line{445} %argrw{"wrr"}
+	add		$tmp151 ___427_rudivrv $const15 	%argrw{"wrr"}
+	div		___427_resultAnisotropy $tmp150 $tmp151 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:447
+#             resultAnisotropy = clamp(resultAnisotropy*anisotropyGain, 
+	neq		$tmp152 anisotropyGain $const15 	%line{447} %argrw{"wrr"}
+	if		$tmp152 301 301 	%argrw{"r"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:448
 #                                      0.0, 1.0);
-	mul		$tmp157 ___427_resultAnisotropy anisotropyGain 	%line{444} %argrw{"wrr"}
-	functioncall	$const44 294 	%argrw{"r"}
+	mul		$tmp153 ___427_resultAnisotropy anisotropyGain 	%line{448} %argrw{"wrr"}
+	functioncall	$const44 290 	%argrw{"r"}
 # C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:141
 # float  clamp (float x, float minval, float maxval) { return max(min(x,maxval),minval); }
-	min		$tmp158 $tmp157 $const14 	%filename{"C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{141} %argrw{"wrr"}
-	max		___427_resultAnisotropy $tmp158 $const3 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:447
-#                                 2.0*resultAnisotropy+2.0);
-	mul		$tmp159 ___427_resultAnisotropy ___427_resultAnisotropy 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{447} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:448
-#         
-	mul		$tmp160 $const37 ___427_resultAnisotropy 	%line{448} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:447
-#                                 2.0*resultAnisotropy+2.0);
-	sub		$tmp161 $tmp159 $tmp160 	%line{447} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:448
-#         
-	add		$tmp162 $tmp161 $const37 	%line{448} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:447
-#                                 2.0*resultAnisotropy+2.0);
-	div		___430__alpha $const14 $tmp162 	%line{447} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:450
-#             varianceU = variance * _alpha;
-	add		___430_variance ___427_varianceU ___427_varianceV 	%line{450} %argrw{"wrr"}
+	min		$tmp154 $tmp153 $const15 	%filename{"C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{141} %argrw{"wrr"}
+	max		___427_resultAnisotropy $tmp154 $const4 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:451
-#             varianceV = variance *(1.0-_alpha);
-	mul		___427_varianceU ___430_variance ___430__alpha 	%line{451} %argrw{"wrr"}
+#                                 2.0*resultAnisotropy+2.0);
+	mul		$tmp155 ___427_resultAnisotropy ___427_resultAnisotropy 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{451} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:452
-#             
-	sub		$tmp163 $const14 ___430__alpha 	%line{452} %argrw{"wrr"}
-	mul		___427_varianceV ___430_variance $tmp163 	%argrw{"wrr"}
+#         
+	mul		$tmp156 $const37 ___427_resultAnisotropy 	%line{452} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:451
+#                                 2.0*resultAnisotropy+2.0);
+	sub		$tmp157 $tmp155 $tmp156 	%line{451} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:452
+#         
+	add		$tmp158 $tmp157 $const37 	%line{452} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:451
+#                                 2.0*resultAnisotropy+2.0);
+	div		___430__alpha $const15 $tmp158 	%line{451} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:454
-#             resultRoughnessV = sqrt(varianceV);
-	sqrt		___427_resultRoughnessU ___427_varianceU 	%line{454} %argrw{"wr"}
+#             varianceU = variance * _alpha;
+	add		___430_variance ___427_varianceU ___427_varianceV 	%line{454} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:455
-#         }
-	sqrt		___427_resultRoughnessV ___427_varianceV 	%line{455} %argrw{"wr"}
+#             varianceV = variance *(1.0-_alpha);
+	mul		___427_varianceU ___430_variance ___430__alpha 	%line{455} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:456
+#             
+	sub		$tmp159 $const15 ___430__alpha 	%line{456} %argrw{"wrr"}
+	mul		___427_varianceV ___430_variance $tmp159 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:458
-#         resultAnisotropyDirection = _pPpu;
-	add		$tmp164 $const14 ___427_resultAnisotropy 	%line{458} %argrw{"wrr"}
-	div		resultRoughness ___427_resultRoughnessU $tmp164 	%argrw{"wrr"}
+#             resultRoughnessV = sqrt(varianceV);
+	sqrt		___427_resultRoughnessU ___427_varianceU 	%line{458} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:459
-#         resultHeightMap           = deriv1[0];
-	assign		resultAnisotropyDirection ___427__pPpu 	%line{459} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:460
-#         // resultHeightMap           = deriv1[2];
-	compref		resultHeightMap ___427_deriv1 $const5 	%line{460} %argrw{"wrr"}
+#         }
+	sqrt		___427_resultRoughnessV ___427_varianceV 	%line{459} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:462
+#         // resultRoughness           = (rudivrv-1.0)/(rudivrv+1.0);
+	add		$tmp160 $const15 ___427_resultAnisotropy 	%line{462} %argrw{"wrr"}
+	div		resultRoughness ___427_resultRoughnessU $tmp160 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:466
-#         resultAnisotropy = 0;
-	assign		resultRoughness baseRoughness 	%line{466} %argrw{"wr"}
+#         resultHeightMap           = deriv1[0];
+	assign		resultAnisotropyDirection ___427__pPpu 	%line{466} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:467
-#         resultAnisotropyDirection = vector(1,0,0);
-	assign		resultAnisotropy $const5 	%line{467} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:468
-#         resultBumpNormal = N;
-	assign		resultAnisotropyDirection $const45 	%line{468} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:469
-#     }
-	assign		resultBumpNormal N 	%line{469} %argrw{"wr"}
+#         // resultHeightMap           = deriv1[1];
+	compref		resultHeightMap ___427_deriv1 $const6 	%line{467} %argrw{"wrr"}
 	end

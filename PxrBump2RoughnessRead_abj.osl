@@ -116,17 +116,17 @@ shader PxrBump2RoughnessRead
     ]],
 
 
-    // output vector resultBumpNormal = normal(0) [[
-        // string widget="null",
-    // ]],
+    output vector resultBumpNormal = normal(0) [[
+        string widget="null",
+    ]],
     
     // output color resultBumpNormal = color(0) [[
         // string widget="null",
     // ]],
     
-    output vector resultBumpNormal = vector(0) [[
-        string widget="null",
-    ]],
+    // output vector resultBumpNormal = vector(0) [[
+        // string widget="null",
+    // ]],
     
     output color testTex = 0,
     
@@ -235,6 +235,10 @@ shader PxrBump2RoughnessRead
         deriv2 = resultRGBA_d2.c;
         
         testTex = resultTest.c;
+        
+        // testTex = normalize(N);
+        
+        // testTex.g *= -1;
 
 
         // der
@@ -325,7 +329,7 @@ shader PxrBump2RoughnessRead
         
         
         
-        resultBumpNormal = vector(1.4 * dx*bumpNormalGain, 1.4 * dy*bumpNormalGain, 1); /////////
+        // resultBumpNormal = vector(1.4 * dx*bumpNormalGain, 1.4 * dy*bumpNormalGain, 1); /////////
         
         
         
@@ -455,16 +459,20 @@ shader PxrBump2RoughnessRead
         }
         
         resultRoughness           = resultRoughnessU/(1+resultAnisotropy);
+        // resultRoughness           = (rudivrv-1.0)/(rudivrv+1.0);
+        // resultRoughness           = rudivrv;
+        // resultRoughness           = 0;
         resultAnisotropyDirection = _pPpu;
         resultHeightMap           = deriv1[0];
+        // resultHeightMap           = deriv1[1];
         // resultHeightMap           = deriv1[2];
         
         // testTex = normalize(Ng);
     } else {
 
-        resultRoughness = baseRoughness;
-        resultAnisotropy = 0;
-        resultAnisotropyDirection = vector(1,0,0);
-        resultBumpNormal = N;
+        // resultRoughness = baseRoughness;
+        // resultAnisotropy = 0;
+        // resultAnisotropyDirection = vector(1,0,0);
+        // resultBumpNormal = N;
     }
 }
