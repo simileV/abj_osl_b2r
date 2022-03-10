@@ -128,6 +128,7 @@ shader PxrBump2RoughnessRead
         // string widget="null",
     // ]],
     
+    
     output color testTex = 0,
     
 
@@ -468,11 +469,13 @@ shader PxrBump2RoughnessRead
         // resultHeightMap           = deriv1[2];
         
         // testTex = normalize(Ng);
+        
+        // testTex = vector(1, 0, 0);
     } else {
 
-        // resultRoughness = baseRoughness;
-        // resultAnisotropy = 0;
-        // resultAnisotropyDirection = vector(1,0,0);
-        // resultBumpNormal = N;
+        resultRoughness = baseRoughness;
+        resultAnisotropy = 0;
+        resultAnisotropyDirection = vector(1,0,0);
+        resultBumpNormal = N;
     }
 }

@@ -1,6 +1,6 @@
 OpenShadingLanguage 1.00
 # Compiled by oslc 1.11.14
-# options: -o C:\Users\aleks\AppData\Local\Temp\tmpcv1dy6am.oso -IC:\Program Files\Blender Foundation\Blender 3.0\3.0\scripts\addons\cycles\shader
+# options: -o C:\Users\aleks\AppData\Local\Temp\tmp_dmauuq8.oso -IC:\Users\aleks\source\repos\blender_b2r\build_windows_Full_x64_vc16_Release\bin\Release\3.2\scripts\addons\cycles\shader
 shader PxrBump2RoughnessRead
 param	int	enable	1		%meta{string,widget,"checkBox"} %meta{int,connectable,0} %meta{string,help,"This will enabling Bump Roughness or disable it"}  %read{1,1} %write{2147483647,-1}
 param	int	invertBumpNormal	0		%meta{string,widget,"checkBox"} %meta{int,connectable,0} %meta{string,help,"This will invert Bump Normal"}  %read{185,185} %write{2147483647,-1}
@@ -8,7 +8,7 @@ param	struct Manifold	inputManifold			%meta{string,page,""} %meta{string,tag,"st
 param	point	inputManifold.Q	0 0 0		%meta{string,page,""} %meta{string,tag,"struct"} %meta{string,widget,"null"} %meta{string,widget,"null"}  %read{12,13} %write{2147483647,-1} %mystruct{inputManifold} %mystructfield{0} %derivs
 param	normal	inputManifold.QN	0 0 1		%meta{string,page,""} %meta{string,tag,"struct"} %meta{string,widget,"null"} %meta{string,widget,"null"}  %read{2147483647,-1} %write{2147483647,-1} %mystruct{inputManifold} %mystructfield{1}
 param	float	inputManifold.Qradius	0		%meta{string,page,""} %meta{string,tag,"struct"} %meta{string,widget,"null"} %meta{string,widget,"null"}  %read{2147483647,-1} %write{2147483647,-1} %mystruct{inputManifold} %mystructfield{2}
-param	float	baseRoughness	0.00100000005		%meta{string,help,"This is the roughness of a micro-facet at a singletexel level of the input textures"}  %read{273,273} %write{2147483647,-1}
+param	float	baseRoughness	0.00100000005		%meta{string,help,"This is the roughness of a micro-facet at a singletexel level of the input textures"}  %read{273,305} %write{2147483647,-1}
 param	float	gain	1		%meta{string,help,"This is a multiplier to the aggregate roughness and normal map"}  %read{219,219} %write{2147483647,-1}
 param	float	bumpNormalGain	1		%meta{string,help,"multiplier to the normal map magnitude"}  %read{204,208} %write{2147483647,-1}
 param	float	anisotropyGain	1		%meta{string,help,"This is a multiplier to the aggregate anisotropy"}  %read{284,286} %write{2147483647,-1}
@@ -18,14 +18,14 @@ param	float	frequency	1		%meta{string,help,"This is a multiplier to st-coordinat
 param	float	rotation	0		%meta{string,help,"This is a rotation control to st-coordinates, in degrees"}  %read{20,20} %write{2147483647,-1} %derivs
 param	float	blur	0		%meta{string,page,"Filtering"} %meta{string,help,"Amount of blur to apply to texture lookup."}  %read{2147483647,-1} %write{2147483647,-1}
 param	float	filterScale	1		%meta{string,widget,"null"} %meta{string,help,"Multiplies the size of the texture filter, less than one for sharper textures."}  %read{16,16} %write{2147483647,-1}
-oparam	vector	resultBumpNormal	0 0 0		%meta{string,widget,"null"}  %read{210,218} %write{0,218} %initexpr
+oparam	vector	resultBumpNormal	0 0 0		%meta{string,widget,"null"}  %read{210,218} %write{0,308} %initexpr
 oparam	color	testTex	0 0 0		%read{2147483647,-1} %write{160,160}
-oparam	float	resultRoughness	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{302,302}
-oparam	float	resultAnisotropy	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{2147483647,-1}
-oparam	vector	resultAnisotropyDirection	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{303,303}
+oparam	float	resultRoughness	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{302,305}
+oparam	float	resultAnisotropy	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{306,306}
+oparam	vector	resultAnisotropyDirection	0 0 0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{303,307}
 oparam	float	resultHeightMap	0		%meta{string,widget,"null"}  %read{2147483647,-1} %write{304,304}
 global	point	P	%read{162,163} %write{2147483647,-1} %derivs
-global	normal	N	%read{195,195} %write{2147483647,-1}
+global	normal	N	%read{195,308} %write{2147483647,-1}
 global	normal	Ng	%read{191,191} %write{2147483647,-1}
 local	vector	___257_axis	%read{26,28} %write{23,23} %derivs
 local	float	___257_cosang	%read{25,66} %write{24,24} %derivs
@@ -95,7 +95,7 @@ temp	int	$tmp1	%read{2,2} %write{1,1}
 const	string	$const3	"smartcubic"		%read{3,3} %write{2147483647,-1}
 const	float	$const4	0		%read{4,289} %write{2147483647,-1}
 const	string	$const5	"geom:uv"		%read{5,5} %write{2147483647,-1}
-const	int	$const6	0		%read{6,304} %write{2147483647,-1}
+const	int	$const6	0		%read{6,306} %write{2147483647,-1}
 temp	float	$tmp2	%read{14,14} %write{6,6} %derivs
 temp	float	$tmp3	%read{15,15} %write{7,7} %derivs
 const	string	$const7	"Texture_Std_SetupInputs"		%read{8,8} %write{2147483647,-1}
@@ -286,27 +286,28 @@ temp	float	$tmp157	%read{293,293} %write{292,292}
 temp	float	$tmp158	%read{294,294} %write{293,293}
 temp	float	$tmp159	%read{298,298} %write{297,297}
 temp	float	$tmp160	%read{302,302} %write{301,301}
+const	vector	$const45	1 0 0		%read{307,307} %write{2147483647,-1}
 code resultBumpNormal
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:120
 #         string widget="null",
 	assign		resultBumpNormal $const1 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{120} %argrw{"wr"}
 code ___main___
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:155
-#         string filter = "smartcubic";
-	eq		$tmp1 enable $const2 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{155} %argrw{"wrr"}
-	if		$tmp1 305 305 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:156
+#         string filter = "smartcubic";
+	eq		$tmp1 enable $const2 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{156} %argrw{"wrr"}
+	if		$tmp1 305 309 	%argrw{"r"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:157
 #         // string filter = "smartbicubic";
-	assign		___427_filter $const3 	%line{156} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:165
-#         int hasUV = getattribute( "geom:uv", UV);
-	assign		___427_UV $const4 	%line{165} %argrw{"wr"}
+	assign		___427_filter $const3 	%line{157} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:166
+#         int hasUV = getattribute( "geom:uv", UV);
+	assign		___427_UV $const4 	%line{166} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:167
 #         
-	getattribute	___427_hasUV $const5 ___427_UV 	%line{166} %argrw{"wrw"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:171
+	getattribute	___427_hasUV $const5 ___427_UV 	%line{167} %argrw{"wrw"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:172
 #                                 filterScale, 
-	compref		$tmp2 ___427_UV $const6 	%line{171} %argrw{"wrr"}
+	compref		$tmp2 ___427_UV $const6 	%line{172} %argrw{"wrr"}
 	compref		$tmp3 ___427_UV $const2 	%argrw{"wrr"}
 	functioncall	$const7 17 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:110
@@ -331,115 +332,115 @@ code ___main___
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:112
 #     textureFilterScale = filterScale;
 	assign		___427_textureFilterScale filterScale 	%line{112} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:183
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:184
 #                           point(0,0,0),point(0,0,1)) * frequency;
-	point		$tmp6 ___427_inputS ___427_inputT $const4 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{183} %argrw{"wrrr"}
+	point		$tmp6 ___427_inputS ___427_inputT $const4 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{184} %argrw{"wrrr"}
 	functioncall	$const9 21 	%argrw{"r"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:65
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:65
 # float  radians (float x)  { return x*(M_PI/180.0); }
-	div		$tmp8 $const10 $const11 	%filename{"C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{65} %argrw{"wrr"}
+	div		$tmp8 $const10 $const11 	%filename{"C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{65} %argrw{"wrr"}
 	mul		$tmp7 rotation $tmp8 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:183
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:184
 #                           point(0,0,0),point(0,0,1)) * frequency;
-	functioncall	$const14 72 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{183} %argrw{"r"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:270
+	functioncall	$const14 72 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{184} %argrw{"r"}
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:270
 #     vector axis = normalize (b - a);
-	sub		$tmp11 $const13 $const12 	%filename{"C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{270} %argrw{"wrr"}
+	sub		$tmp11 $const13 $const12 	%filename{"C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{270} %argrw{"wrr"}
 	normalize	___257_axis $tmp11 	%argrw{"wr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:272
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:272
 #     sincos (angle, sinang, cosang);
 	sincos		$tmp7 ___257_sinang ___257_cosang 	%line{272} %argrw{"rww"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:273
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:273
 #     float cosang1 = 1.0 - cosang;
 	sub		___257_cosang1 $const15 ___257_cosang 	%line{273} %argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:274
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:274
 #     float x = axis[0], y = axis[1], z = axis[2];
 	compref		___257_x ___257_axis $const6 	%line{274} %argrw{"wrr"}
 	compref		___257_y ___257_axis $const2 	%argrw{"wrr"}
 	compref		___257_z ___257_axis $const16 	%argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:275
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:275
 #     matrix M = matrix (x * x + (1.0 - x * x) * cosang,
 	mul		$tmp12 ___257_x ___257_x 	%line{275} %argrw{"wrr"}
 	mul		$tmp13 ___257_x ___257_x 	%argrw{"wrr"}
 	sub		$tmp14 $const15 $tmp13 	%argrw{"wrr"}
 	mul		$tmp15 $tmp14 ___257_cosang 	%argrw{"wrr"}
 	add		$tmp16 $tmp12 $tmp15 	%argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:276
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:276
 #                        x * y * cosang1 + z * sinang,
 	mul		$tmp17 ___257_x ___257_y 	%line{276} %argrw{"wrr"}
 	mul		$tmp18 $tmp17 ___257_cosang1 	%argrw{"wrr"}
 	mul		$tmp19 ___257_z ___257_sinang 	%argrw{"wrr"}
 	add		$tmp20 $tmp18 $tmp19 	%argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:277
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:277
 #                        x * z * cosang1 - y * sinang,
 	mul		$tmp21 ___257_x ___257_z 	%line{277} %argrw{"wrr"}
 	mul		$tmp22 $tmp21 ___257_cosang1 	%argrw{"wrr"}
 	mul		$tmp23 ___257_y ___257_sinang 	%argrw{"wrr"}
 	sub		$tmp24 $tmp22 $tmp23 	%argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:279
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:279
 #                        x * y * cosang1 - z * sinang,
 	mul		$tmp25 ___257_x ___257_y 	%line{279} %argrw{"wrr"}
 	mul		$tmp26 $tmp25 ___257_cosang1 	%argrw{"wrr"}
 	mul		$tmp27 ___257_z ___257_sinang 	%argrw{"wrr"}
 	sub		$tmp28 $tmp26 $tmp27 	%argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:280
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:280
 #                        y * y + (1.0 - y * y) * cosang,
 	mul		$tmp29 ___257_y ___257_y 	%line{280} %argrw{"wrr"}
 	mul		$tmp30 ___257_y ___257_y 	%argrw{"wrr"}
 	sub		$tmp31 $const15 $tmp30 	%argrw{"wrr"}
 	mul		$tmp32 $tmp31 ___257_cosang 	%argrw{"wrr"}
 	add		$tmp33 $tmp29 $tmp32 	%argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:281
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:281
 #                        y * z * cosang1 + x * sinang,
 	mul		$tmp34 ___257_y ___257_z 	%line{281} %argrw{"wrr"}
 	mul		$tmp35 $tmp34 ___257_cosang1 	%argrw{"wrr"}
 	mul		$tmp36 ___257_x ___257_sinang 	%argrw{"wrr"}
 	add		$tmp37 $tmp35 $tmp36 	%argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:283
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:283
 #                        x * z * cosang1 + y * sinang,
 	mul		$tmp38 ___257_x ___257_z 	%line{283} %argrw{"wrr"}
 	mul		$tmp39 $tmp38 ___257_cosang1 	%argrw{"wrr"}
 	mul		$tmp40 ___257_y ___257_sinang 	%argrw{"wrr"}
 	add		$tmp41 $tmp39 $tmp40 	%argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:284
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:284
 #                        y * z * cosang1 - x * sinang,
 	mul		$tmp42 ___257_y ___257_z 	%line{284} %argrw{"wrr"}
 	mul		$tmp43 $tmp42 ___257_cosang1 	%argrw{"wrr"}
 	mul		$tmp44 ___257_x ___257_sinang 	%argrw{"wrr"}
 	sub		$tmp45 $tmp43 $tmp44 	%argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:285
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:285
 #                        z * z + (1.0 - z * z) * cosang,
 	mul		$tmp46 ___257_z ___257_z 	%line{285} %argrw{"wrr"}
 	mul		$tmp47 ___257_z ___257_z 	%argrw{"wrr"}
 	sub		$tmp48 $const15 $tmp47 	%argrw{"wrr"}
 	mul		$tmp49 $tmp48 ___257_cosang 	%argrw{"wrr"}
 	add		$tmp50 $tmp46 $tmp49 	%argrw{"wrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:275
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:275
 #     matrix M = matrix (x * x + (1.0 - x * x) * cosang,
 	matrix		___257_M $tmp16 $tmp20 $tmp24 $const4 $tmp28 $tmp33 $tmp37 $const4 $tmp41 $tmp45 $tmp50 $const4 $const4 $const4 $const4 $const15 	%line{275} %argrw{"wrrrrrrrrrrrrrrrr"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:288
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:288
 #     return transform (M, p-a) + a;
 	sub		$tmp52 $tmp6 $const12 	%line{288} %argrw{"wrr"}
 	transformv	$tmp51 ___257_M $tmp52 	%argrw{"wrr"}
 	add		$tmp5 $tmp51 $const12 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:184
-#         inputS = QT[0];
-	mul		___427_QT $tmp5 frequency 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{184} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:185
-#         inputT = QT[1];
-	compref		___427_inputS ___427_QT $const6 	%line{185} %argrw{"wrr"}
+#         inputS = QT[0];
+	mul		___427_QT $tmp5 frequency 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{185} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:186
+#         inputT = QT[1];
+	compref		___427_inputS ___427_QT $const6 	%line{186} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:187
 #         
-	compref		___427_inputT ___427_QT $const2 	%line{186} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:194
-#         float myt = inputT;
-	assign		___427_mys ___427_inputS 	%line{194} %argrw{"wr"}
+	compref		___427_inputT ___427_QT $const2 	%line{187} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:195
+#         float myt = inputT;
+	assign		___427_mys ___427_inputS 	%line{195} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:196
 #         
-	assign		___427_myt ___427_inputT 	%line{195} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:210
+	assign		___427_myt ___427_inputT 	%line{196} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:211
 #                         filter, textureFilterScale, 0,
-	functioncall	$const18 104 	%line{210} %argrw{"r"}
+	functioncall	$const18 104 	%line{211} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:195
 #     Texture_GetColor(path, 
 	functioncall	$const18 104 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{195} %argrw{"r"}
@@ -498,9 +499,9 @@ code ___main___
 #         result.c = texture(path, s, 1.0 - t, 
 	texture		___427_resultRGBA_d1.c filename_d1 ___427_inputS $tmp62 $const24 ___427_resultRGBA_d1.a $const25 ___427_filter $const26 $const4 $const27 $const17 $const28 $const4 $const29 $const15 $const30 $const6 $const31 ___427_textureFilterScale $const32 $tmp63 	%line{161} %argrw{"wrrrrwrrrrrrrrrrrrrrrr"} %argderivs{2,3}
 	assign		___427_resultRGBA_d1.c ___427_resultRGBA_d1.c 	%argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:215
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:216
 #                         filter, textureFilterScale, 0,
-	functioncall	$const18 131 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{215} %argrw{"r"}
+	functioncall	$const18 131 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{216} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:195
 #     Texture_GetColor(path, 
 	functioncall	$const18 131 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{195} %argrw{"r"}
@@ -559,9 +560,9 @@ code ___main___
 #         result.c = texture(path, s, 1.0 - t, 
 	texture		___427_resultRGBA_d2.c filename_d1 ___427_inputS $tmp73 $const24 ___427_resultRGBA_d2.a $const25 ___427_filter $const26 $const4 $const27 $const17 $const28 $const4 $const29 $const15 $const30 $const33 $const31 ___427_textureFilterScale $const32 $tmp74 	%line{161} %argrw{"wrrrrwrrrrrrrrrrrrrrrr"} %argderivs{2,3}
 	assign		___427_resultRGBA_d2.c ___427_resultRGBA_d2.c 	%argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:220
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:221
 #                 filter, textureFilterScale, 0,
-	functioncall	$const18 158 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{220} %argrw{"r"}
+	functioncall	$const18 158 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{221} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h:195
 #     Texture_GetColor(path, 
 	functioncall	$const18 158 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrTexture.h"} %line{195} %argrw{"r"}
@@ -620,18 +621,18 @@ code ___main___
 #         result.c = texture(path, s, 1.0 - t, 
 	texture		___427_resultTest.c filename_check ___427_inputS $tmp84 $const24 ___427_resultTest.a $const25 ___427_filter $const26 $const4 $const27 $const17 $const28 $const4 $const29 $const15 $const30 $const6 $const31 ___427_textureFilterScale $const32 $tmp85 	%line{161} %argrw{"wrrrrwrrrrrrrrrrrrrrrr"} %argderivs{2,3}
 	assign		___427_resultTest.c ___427_resultTest.c 	%argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:235
-#         deriv2 = resultRGBA_d2.c;
-	assign		___427_deriv1 ___427_resultRGBA_d1.c 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{235} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:236
+#         deriv2 = resultRGBA_d2.c;
+	assign		___427_deriv1 ___427_resultRGBA_d1.c 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{236} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:237
 #         
-	assign		___427_deriv2 ___427_resultRGBA_d2.c 	%line{236} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:238
+	assign		___427_deriv2 ___427_resultRGBA_d2.c 	%line{237} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:239
 #         
-	assign		testTex ___427_resultTest.c 	%line{238} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:249
+	assign		testTex ___427_resultTest.c 	%line{239} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:250
 #         // partialDeriv(P, u, v, pPps, pPpt);
-	functioncall	$const34 180 	%line{249} %argrw{"r"}
+	functioncall	$const34 180 	%line{250} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:68
 #     vector dQdx = Dx(Q);
 	Dx		___371_dQdx P 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h"} %line{68} %argrw{"wr"} %argderivs{1}
@@ -668,113 +669,113 @@ code ___main___
 	mul		$tmp93 ___371_dQdx ___371_C 	%argrw{"wrr"}
 	sub		$tmp94 $tmp92 $tmp93 	%argrw{"wrr"}
 	mul		___427_pPpt $tmp94 ___371_invdet 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:254
-#         float dy=deriv1[2];
-	compref		___427_dx ___427_deriv1 $const2 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{254} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:255
-#         float dxdx=deriv2[0];
-	compref		___427_dy ___427_deriv1 $const16 	%line{255} %argrw{"wrr"}
+#         float dy=deriv1[2];
+	compref		___427_dx ___427_deriv1 $const2 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{255} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:256
-#         float dydy=deriv2[1];
-	compref		___427_dxdx ___427_deriv2 $const6 	%line{256} %argrw{"wrr"}
+#         float dxdx=deriv2[0];
+	compref		___427_dy ___427_deriv1 $const16 	%line{256} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:257
-#         float dxdy=deriv2[2];
-	compref		___427_dydy ___427_deriv2 $const2 	%line{257} %argrw{"wrr"}
+#         float dydy=deriv2[1];
+	compref		___427_dxdx ___427_deriv2 $const6 	%line{257} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:258
+#         float dxdy=deriv2[2];
+	compref		___427_dydy ___427_deriv2 $const2 	%line{258} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:259
 # 
-	compref		___427_dxdy ___427_deriv2 $const16 	%line{258} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:265
-#             dx = -dx;
-	eq		$tmp95 invertBumpNormal $const6 	%line{265} %argrw{"wrr"}
-	if		$tmp95 189 189 	%argrw{"r"}
+	compref		___427_dxdy ___427_deriv2 $const16 	%line{259} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:266
-#             dy = -dy;
-	neg		___427_dx ___427_dx 	%line{266} %argrw{"wr"}
+#             dx = -dx;
+	eq		$tmp95 invertBumpNormal $const6 	%line{266} %argrw{"wrr"}
+	if		$tmp95 189 189 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:267
+#             dy = -dy;
+	neg		___427_dx ___427_dx 	%line{267} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:268
 #         }
-	neg		___427_dy ___427_dy 	%line{267} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:277
+	neg		___427_dy ___427_dy 	%line{268} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:278
 #         // vector PN = cross(pPps, pPpt);
-	cross		___427_PN ___427_pPps ___427_pPpt 	%line{277} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:284
-#         if (dot(PN,Ng)<0) {
-	assign		___427_lefthanded $const6 	%line{284} %argrw{"wr"}
+	cross		___427_PN ___427_pPps ___427_pPpt 	%line{278} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:285
+#         if (dot(PN,Ng)<0) {
+	assign		___427_lefthanded $const6 	%line{285} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:286
 #         // if (dot(PN,normalize(Ng))<0) {
-	dot		$tmp96 ___427_PN Ng 	%line{285} %argrw{"wrr"}
+	dot		$tmp96 ___427_PN Ng 	%line{286} %argrw{"wrr"}
 	lt		$tmp97 $tmp96 $const6 	%argrw{"wrr"}
 	if		$tmp97 195 195 	%argrw{"r"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:291
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:292
 #         }
-	assign		___427_lefthanded $const2 	%line{291} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:307
+	assign		___427_lefthanded $const2 	%line{292} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:308
 #         // PN = (N);
-	normalize	___427_PN N 	%line{307} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:309
+	normalize	___427_PN N 	%line{308} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:310
 #         
-	eq		$tmp98 ___427_lefthanded $const2 	%line{309} %argrw{"wrr"}
+	eq		$tmp98 ___427_lefthanded $const2 	%line{310} %argrw{"wrr"}
 	if		$tmp98 199 199 	%argrw{"r"}
 	neg		___427_PN ___427_PN 	%argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:314
-#         pPpt = cross(PN,pPps);
-	cross		$tmp99 ___427_pPpt ___427_PN 	%line{314} %argrw{"wrr"}
-	normalize	___427_pPps $tmp99 	%argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:315
+#         pPpt = cross(PN,pPps);
+	cross		$tmp99 ___427_pPpt ___427_PN 	%line{315} %argrw{"wrr"}
+	normalize	___427_pPps $tmp99 	%argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:316
 #         // pPpt = 1.0 - cross(PN,pPps);
-	cross		___427_pPpt ___427_PN ___427_pPps 	%line{315} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:328
+	cross		___427_pPpt ___427_PN ___427_pPps 	%line{316} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:329
 #         else resultBumpNormal = vector(dx*bumpNormalGain, dy*bumpNormalGain, -1);
-	eq		$tmp100 ___427_lefthanded $const6 	%line{328} %argrw{"wrr"}
+	eq		$tmp100 ___427_lefthanded $const6 	%line{329} %argrw{"wrr"}
 	if		$tmp100 207 210 	%argrw{"r"}
 	mul		$tmp101 ___427_dx bumpNormalGain 	%argrw{"wrr"}
 	mul		$tmp102 ___427_dy bumpNormalGain 	%argrw{"wrr"}
 	vector		resultBumpNormal $tmp101 $tmp102 $const15 	%argrw{"wrrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:329
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:330
 #         
-	mul		$tmp103 ___427_dx bumpNormalGain 	%line{329} %argrw{"wrr"}
+	mul		$tmp103 ___427_dx bumpNormalGain 	%line{330} %argrw{"wrr"}
 	mul		$tmp104 ___427_dy bumpNormalGain 	%argrw{"wrr"}
 	vector		resultBumpNormal $tmp103 $tmp104 $const36 	%argrw{"wrrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:359
-#                         + pPpt*resultBumpNormal[1]
-	compref		$tmp105 resultBumpNormal $const6 	%line{359} %argrw{"wrr"}
-	mul		$tmp106 ___427_pPps $tmp105 	%argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:360
+#                         + pPpt*resultBumpNormal[1]
+	compref		$tmp105 resultBumpNormal $const6 	%line{360} %argrw{"wrr"}
+	mul		$tmp106 ___427_pPps $tmp105 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:361
 #                         + PN*resultBumpNormal[2];
-	compref		$tmp107 resultBumpNormal $const2 	%line{360} %argrw{"wrr"}
+	compref		$tmp107 resultBumpNormal $const2 	%line{361} %argrw{"wrr"}
 	mul		$tmp108 ___427_pPpt $tmp107 	%argrw{"wrr"}
 	add		$tmp109 $tmp106 $tmp108 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:361
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:362
 # 
-	compref		$tmp110 resultBumpNormal $const16 	%line{361} %argrw{"wrr"}
+	compref		$tmp110 resultBumpNormal $const16 	%line{362} %argrw{"wrr"}
 	mul		$tmp111 ___427_PN $tmp110 	%argrw{"wrr"}
 	add		resultBumpNormal $tmp109 $tmp111 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:368
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:369
 # 
-	normalize	resultBumpNormal resultBumpNormal 	%line{368} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:407
-#         float sxx = 2*vargain*(dxdx - dx*dx);
-	mul		___427_vargain gain gain 	%line{407} %argrw{"wrr"}
+	normalize	resultBumpNormal resultBumpNormal 	%line{369} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:408
+#         float sxx = 2*vargain*(dxdx - dx*dx);
+	mul		___427_vargain gain gain 	%line{408} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:409
 #         float sxy = 2*vargain*(dxdy - dx*dy);
-	mul		$tmp112 $const37 ___427_vargain 	%line{408} %argrw{"wrr"}
+	mul		$tmp112 $const37 ___427_vargain 	%line{409} %argrw{"wrr"}
 	mul		$tmp113 ___427_dx ___427_dx 	%argrw{"wrr"}
 	sub		$tmp114 ___427_dxdx $tmp113 	%argrw{"wrr"}
 	mul		___427_sxx $tmp112 $tmp114 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:409
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:410
 #         float syy = 2*vargain*(dydy - dy*dy);
-	mul		$tmp115 $const37 ___427_vargain 	%line{409} %argrw{"wrr"}
+	mul		$tmp115 $const37 ___427_vargain 	%line{410} %argrw{"wrr"}
 	mul		$tmp116 ___427_dx ___427_dy 	%argrw{"wrr"}
 	sub		$tmp117 ___427_dxdy $tmp116 	%argrw{"wrr"}
 	mul		___427_sxy $tmp115 $tmp117 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:410
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:411
 # 
-	mul		$tmp118 $const37 ___427_vargain 	%line{410} %argrw{"wrr"}
+	mul		$tmp118 $const37 ___427_vargain 	%line{411} %argrw{"wrr"}
 	mul		$tmp119 ___427_dy ___427_dy 	%argrw{"wrr"}
 	sub		$tmp120 ___427_dydy $tmp119 	%argrw{"wrr"}
 	mul		___427_syy $tmp118 $tmp120 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:415
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:416
 # 
-	functioncall	$const38 261 	%line{415} %argrw{"r"}
+	functioncall	$const38 261 	%line{416} %argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:110
 #     float del = sqrt(a*a+4*b*b-2*a*c+c*c);
 	mul		$tmp121 ___427_sxx ___427_sxx 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h"} %line{110} %argrw{"wrr"}
@@ -825,98 +826,110 @@ code ___main___
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2Roughness.h:125
 #     v2 = normalize(v2);
 	normalize	___427_v2 ___427_v2 	%line{125} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:427
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:428
 #         vector _pPpv = -pPps*v2[0]+pPpt*v2[1];
-	neg		$tmp138 ___427_pPps 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{427} %argrw{"wr"}
+	neg		$tmp138 ___427_pPps 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{428} %argrw{"wr"}
 	compref		$tmp139 ___427_v1 $const6 	%argrw{"wrr"}
 	mul		$tmp140 $tmp138 $tmp139 	%argrw{"wrr"}
 	compref		$tmp141 ___427_v1 $const2 	%argrw{"wrr"}
 	mul		$tmp142 ___427_pPpt $tmp141 	%argrw{"wrr"}
 	add		___427__pPpu $tmp140 $tmp142 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:428
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:429
 # 
-	neg		$tmp143 ___427_pPps 	%line{428} %argrw{"wr"}
+	neg		$tmp143 ___427_pPps 	%line{429} %argrw{"wr"}
 	compref		$tmp144 ___427_v2 $const6 	%argrw{"wrr"}
 	mul		$tmp145 $tmp143 $tmp144 	%argrw{"wrr"}
 	compref		$tmp146 ___427_v2 $const2 	%argrw{"wrr"}
 	mul		$tmp147 ___427_pPpt $tmp146 	%argrw{"wrr"}
 	add		___427__pPpv $tmp145 $tmp147 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:430
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:431
 #         
-	mul		___427_base_roughsqr baseRoughness baseRoughness 	%line{430} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:437
-#         float varianceV = l2+base_roughsqr;
-	add		___427_varianceU ___427_l1 ___427_base_roughsqr 	%line{437} %argrw{"wrr"}
+	mul		___427_base_roughsqr baseRoughness baseRoughness 	%line{431} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:438
+#         float varianceV = l2+base_roughsqr;
+	add		___427_varianceU ___427_l1 ___427_base_roughsqr 	%line{438} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:439
 #         
-	add		___427_varianceV ___427_l2 ___427_base_roughsqr 	%line{438} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:441
-#         float resultRoughnessV = sqrt(varianceV)+1e-12;
-	sqrt		$tmp148 ___427_varianceU 	%line{441} %argrw{"wr"}
-	add		___427_resultRoughnessU $tmp148 $const43 	%argrw{"wrr"}
+	add		___427_varianceV ___427_l2 ___427_base_roughsqr 	%line{439} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:442
+#         float resultRoughnessV = sqrt(varianceV)+1e-12;
+	sqrt		$tmp148 ___427_varianceU 	%line{442} %argrw{"wr"}
+	add		___427_resultRoughnessU $tmp148 $const43 	%argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:443
 #         
-	sqrt		$tmp149 ___427_varianceV 	%line{442} %argrw{"wr"}
+	sqrt		$tmp149 ___427_varianceV 	%line{443} %argrw{"wr"}
 	add		___427_resultRoughnessV $tmp149 $const43 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:444
-#         float resultAnisotropy = (rudivrv-1.0)/(rudivrv+1.0);
-	div		___427_rudivrv ___427_resultRoughnessU ___427_resultRoughnessV 	%line{444} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:445
+#         float resultAnisotropy = (rudivrv-1.0)/(rudivrv+1.0);
+	div		___427_rudivrv ___427_resultRoughnessU ___427_resultRoughnessV 	%line{445} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:446
 #             
-	sub		$tmp150 ___427_rudivrv $const15 	%line{445} %argrw{"wrr"}
+	sub		$tmp150 ___427_rudivrv $const15 	%line{446} %argrw{"wrr"}
 	add		$tmp151 ___427_rudivrv $const15 	%argrw{"wrr"}
 	div		___427_resultAnisotropy $tmp150 $tmp151 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:447
-#             resultAnisotropy = clamp(resultAnisotropy*anisotropyGain, 
-	neq		$tmp152 anisotropyGain $const15 	%line{447} %argrw{"wrr"}
-	if		$tmp152 301 301 	%argrw{"r"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:448
+#             resultAnisotropy = clamp(resultAnisotropy*anisotropyGain, 
+	neq		$tmp152 anisotropyGain $const15 	%line{448} %argrw{"wrr"}
+	if		$tmp152 301 301 	%argrw{"r"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:449
 #                                      0.0, 1.0);
-	mul		$tmp153 ___427_resultAnisotropy anisotropyGain 	%line{448} %argrw{"wrr"}
+	mul		$tmp153 ___427_resultAnisotropy anisotropyGain 	%line{449} %argrw{"wrr"}
 	functioncall	$const44 290 	%argrw{"r"}
-# C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h:141
+# C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h:141
 # float  clamp (float x, float minval, float maxval) { return max(min(x,maxval),minval); }
-	min		$tmp154 $tmp153 $const15 	%filename{"C:\\Program Files\\Blender Foundation\\Blender 3.0\\3.0\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{141} %argrw{"wrr"}
+	min		$tmp154 $tmp153 $const15 	%filename{"C:\\Users\\aleks\\source\\repos\\blender_b2r\\build_windows_Full_x64_vc16_Release\\bin\\Release\\3.2\\scripts\\addons\\cycles\\shader/stdosl.h"} %line{141} %argrw{"wrr"}
 	max		___427_resultAnisotropy $tmp154 $const4 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:451
-#                                 2.0*resultAnisotropy+2.0);
-	mul		$tmp155 ___427_resultAnisotropy ___427_resultAnisotropy 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{451} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:452
-#         
-	mul		$tmp156 $const37 ___427_resultAnisotropy 	%line{452} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:451
 #                                 2.0*resultAnisotropy+2.0);
-	sub		$tmp157 $tmp155 $tmp156 	%line{451} %argrw{"wrr"}
+	mul		$tmp155 ___427_resultAnisotropy ___427_resultAnisotropy 	%filename{"D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl"} %line{452} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:453
+#         
+	mul		$tmp156 $const37 ___427_resultAnisotropy 	%line{453} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:452
-#         
-	add		$tmp158 $tmp157 $const37 	%line{452} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:451
 #                                 2.0*resultAnisotropy+2.0);
-	div		___430__alpha $const15 $tmp158 	%line{451} %argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:454
-#             varianceU = variance * _alpha;
-	add		___430_variance ___427_varianceU ___427_varianceV 	%line{454} %argrw{"wrr"}
+	sub		$tmp157 $tmp155 $tmp156 	%line{452} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:453
+#         
+	add		$tmp158 $tmp157 $const37 	%line{453} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:452
+#                                 2.0*resultAnisotropy+2.0);
+	div		___430__alpha $const15 $tmp158 	%line{452} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:455
-#             varianceV = variance *(1.0-_alpha);
-	mul		___427_varianceU ___430_variance ___430__alpha 	%line{455} %argrw{"wrr"}
+#             varianceU = variance * _alpha;
+	add		___430_variance ___427_varianceU ___427_varianceV 	%line{455} %argrw{"wrr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:456
+#             varianceV = variance *(1.0-_alpha);
+	mul		___427_varianceU ___430_variance ___430__alpha 	%line{456} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:457
 #             
-	sub		$tmp159 $const15 ___430__alpha 	%line{456} %argrw{"wrr"}
+	sub		$tmp159 $const15 ___430__alpha 	%line{457} %argrw{"wrr"}
 	mul		___427_varianceV ___430_variance $tmp159 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:458
-#             resultRoughnessV = sqrt(varianceV);
-	sqrt		___427_resultRoughnessU ___427_varianceU 	%line{458} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:459
+#             resultRoughnessV = sqrt(varianceV);
+	sqrt		___427_resultRoughnessU ___427_varianceU 	%line{459} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:460
 #         }
-	sqrt		___427_resultRoughnessV ___427_varianceV 	%line{459} %argrw{"wr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:462
+	sqrt		___427_resultRoughnessV ___427_varianceV 	%line{460} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:463
 #         // resultRoughness           = (rudivrv-1.0)/(rudivrv+1.0);
-	add		$tmp160 $const15 ___427_resultAnisotropy 	%line{462} %argrw{"wrr"}
+	add		$tmp160 $const15 ___427_resultAnisotropy 	%line{463} %argrw{"wrr"}
 	div		resultRoughness ___427_resultRoughnessU $tmp160 	%argrw{"wrr"}
-# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:466
-#         resultHeightMap           = deriv1[0];
-	assign		resultAnisotropyDirection ___427__pPpu 	%line{466} %argrw{"wr"}
 # D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:467
+#         resultHeightMap           = deriv1[0];
+	assign		resultAnisotropyDirection ___427__pPpu 	%line{467} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:468
 #         // resultHeightMap           = deriv1[1];
-	compref		resultHeightMap ___427_deriv1 $const6 	%line{467} %argrw{"wrr"}
+	compref		resultHeightMap ___427_deriv1 $const6 	%line{468} %argrw{"wrr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:477
+#         resultAnisotropy = 0;
+	assign		resultRoughness baseRoughness 	%line{477} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:478
+#         resultAnisotropyDirection = vector(1,0,0);
+	assign		resultAnisotropy $const6 	%line{478} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:479
+#         resultBumpNormal = N;
+	assign		resultAnisotropyDirection $const45 	%line{479} %argrw{"wr"}
+# D:\\projects_3d\\b2r_blender\\blender\\..\\shaders\\PxrBump2RoughnessRead_abj.osl:480
+#     }
+	assign		resultBumpNormal N 	%line{480} %argrw{"wr"}
 	end
