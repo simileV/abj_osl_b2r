@@ -56,6 +56,18 @@ shader PxrBump2RoughnessRead
         string help = "This will invert Bump Normal",
     ]],
     
+    int useVForRough = 1 [[
+        string widget="checkBox",
+        int connectable = 1,
+        string help = "This will calculate roughness using V, instead of U",
+    ]],
+    
+    int usePPpVForAnisoDir = 0 [[
+        string widget="checkBox",
+        int connectable = 1,
+        string help = "This will calculate aniso dir using V, instead of U",
+    ]],
+    
     Manifold inputManifold = { point(0,0,0), normal(0,0,1), 0.0 }
     [[ string page="", string tag="struct", string widget="null", string widget="null" ]],
 
@@ -459,11 +471,35 @@ shader PxrBump2RoughnessRead
             resultRoughnessV = sqrt(varianceV);
         }
         
-        resultRoughness           = resultRoughnessU/(1+resultAnisotropy);
+        
+        
+        if (useVForRough == 1)
+        {
+            resultRoughness           = resultRoughnessV/(1+resultRoughnessV);
+            // resultRoughness = (resultRoughnessU-1.0)/(resultRoughnessV+1.0);
+        }
+        else
+        {
+            resultRoughness           = resultRoughnessU/(1+resultAnisotropy); /////////
+            // resultRoughness           = resultRoughnessV/(1+resultRoughnessV);
+        }
+            
+        
+        // resultRoughness           = rudivrv/(1+resultAnisotropy);
+        // resultRoughness           = resultRoughnessV/(1+resultAnisotropy);
+        
+        
+        if (usePPpVForAnisoDir == 1)
+            resultAnisotropyDirection = _pPpv;
+        else
+        {
+            resultAnisotropyDirection = _pPpu;
+        }
+            
         // resultRoughness           = (rudivrv-1.0)/(rudivrv+1.0);
         // resultRoughness           = rudivrv;
         // resultRoughness           = 0;
-        resultAnisotropyDirection = _pPpu;
+        // resultRoughness           = resultRoughnessV;
         resultHeightMap           = deriv1[0];
         // resultHeightMap           = deriv1[1];
         // resultHeightMap           = deriv1[2];
