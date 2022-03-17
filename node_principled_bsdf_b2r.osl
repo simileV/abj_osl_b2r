@@ -81,14 +81,14 @@ shader node_principled_bsdf_b2r(string distribution = "Multiscatter GGX",
                 // BSDF = principled_diffuse(Normal, DiffuseRoughness);
             }
 
-    if (Sheen > 1e-5) 
-    {
-      color sheen_color = color(1.0, 1.0, 1.0) * (1.0 - SheenTint) + m_ctint * SheenTint;
+        if (Sheen > 1e-5) 
+        {
+          color sheen_color = color(1.0, 1.0, 1.0) * (1.0 - SheenTint) + m_ctint * SheenTint;
 
-      BSDF = BSDF + sheen_color * Sheen * principled_sheen(Normal);
-    }
+          BSDF = BSDF + sheen_color * Sheen * principled_sheen(Normal);
+        }
 
-    BSDF = BSDF * diffuse_weight;
+        BSDF = BSDF * diffuse_weight;
     }
 
     if (specular_weight > 1e-5) 

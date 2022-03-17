@@ -31,28 +31,17 @@
 #include "PxrTexture.h"
 #include "PxrManifold.h"
 
-
-
-vector projectToNormal(vector Norm, vector Vin)
-{
-    //input Norm and Vin at both expected to be normalized at input.
-    vector Vout;
-    
-    vector VNtan = Norm*dot(Vin,Norm);  //component of Vin that is tangent to Norm;
-    Vout = Vin-VNtan;                   //subtract out such that Vin is orthogonal to Norm
-    normalize(Vout);
-    return Vout;
-}
-
 shader PxrBump2RoughnessRead
 (
     int enable = 1 [[
-        string widget="checkBox",
+        // string widget="checkBox",
         int connectable = 0,
         string help = "This will enabling Bump Roughness or disable it",
     ]],
-    
-    int invertBumpNormal = 0 [[ string widget="checkBox", int connectable=0,
+
+    int invertBumpNormal = 0 [[ 
+    // string widget="checkBox", 
+    int connectable=0,
         string help = "This will invert Bump Normal",
     ]],
     
@@ -119,20 +108,8 @@ shader PxrBump2RoughnessRead
     output vector resultBumpNormal = normal(0) [[
         string widget="null",
     ]],
-    
-    // output color resultBumpNormal = color(0) [[
-        // string widget="null",
-    // ]],
-    
-    // output vector resultBumpNormal = vector(0) [[
-        // string widget="null",
-    // ]],
-    
-    
-    output color testTex = 0,
-    
 
-    
+    output color testTex = 0,
     
     output float resultRoughness = 0 [[
         string widget="null",
@@ -151,7 +128,6 @@ shader PxrBump2RoughnessRead
     ]],
 )
 {
-
     if (enable == 1) {
         string filter = "smartcubic";
         // string filter = "smartbicubic";
